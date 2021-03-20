@@ -46,7 +46,7 @@ Route::group([
 ], function () {
 
 
-    Route::get('/', 'AdminController@index')->name('admin');
+    // Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/strc', 'StructureController@index')->name('structure.strc');
     Route::resource('structure', 'StructureController');
     Route::resource('department', 'DepartmentController');
@@ -83,4 +83,20 @@ Route::group([
     //other
     Route::get('/get-areas/{id}', 'RegionController@get_areas')->name('get_areas');
     Route::get('/get-regions/{id}', 'RegionController@get_regions')->name('get_regions');
+});
+
+
+/*
+*
+*
+*/
+
+
+Route::group([
+    'prefix' => 'doc',
+    'namespace' => 'Mk',
+    'middleware' => ['web', 'auth']
+], function () {
+
+    Route::get('/', 'DocController@index')->name('doc');
 });
