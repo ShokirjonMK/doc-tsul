@@ -4,18 +4,12 @@ namespace App\Models\Mk;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Doc extends Model
+class Attached extends Model
 {
-    protected $table = 'doc_document';
+    protected $table = 'doc_attached';
 
     protected $fillable = [
-        'name',
-        'number',
-        'date',
-        'file',
-        'word',
-        'ilova',
-        'end_date',
+        'user_id',
         'status'
     ];
 

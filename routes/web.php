@@ -18,14 +18,16 @@ Route::get('/clear', function () {
     return Artisan::call('config:cache');
 });
 
-Route::get('/', function () {
-    return view('test');
-});
+// Route::get('/', function () {
+//     return view('test');
+// });
 
 Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
 
 
 
@@ -46,7 +48,7 @@ Route::group([
 ], function () {
 
 
-    // Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/strc', 'StructureController@index')->name('structure.strc');
     Route::resource('structure', 'StructureController');
     Route::resource('department', 'DepartmentController');
@@ -99,4 +101,5 @@ Route::group([
 ], function () {
 
     Route::get('/', 'DocController@index')->name('doc');
+    Route::get('/new', 'DocController@new')->name('doc.new');
 });
