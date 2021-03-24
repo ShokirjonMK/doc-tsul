@@ -24,58 +24,20 @@ class DocController extends Controller
 
     public function index()
     {
-        //
+        return view('mk.pages.main');
     }
 
 
     public function new()
     {
+        $data = 'sssss';
 
-        $date = date("Y-m-d");
-        //        $date18 = strtotime("-18 year", strtotime($date));
-
-        $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($date)));
-        $maxdateofbirth = date("Y-m-d", strtotime("-18 year", strtotime($date)));
-        $mindateofbirth = date("Y-m-d", strtotime("-80 year", strtotime($date)));
-        $minpassportdate = date("Y-m-d", strtotime("-10 year", strtotime($date)));
-        $education = Education::where('status', 1)->get();
-        $regions = Region::where('status', 1)->get();
-        $ish_rejimi = IshRejimi::where('status', 1)->get();
-        $partiya = Partiya::where('status', 1)->get();
-        $country = Country::all();
-        $nationalities = Nationality::where('status', 1)->get();
-        $diplom_types = DiplomType::where('status', 1)->get();
-        $degree_info = DegreeInfo::where('status', 1)->get();
-        $stavka = Stavka::where('status', 1)->get();
-        $academic_degree = AcademicDegree::where('status', 1)->get();
-        $degree = Degree::where('status', 1)->get();
-        $special_degree = SpecialDegree::where('status', 1)->get();
-        $language = Lang::where('status', 1)->get();
-        // return $nationalities;
-        return view('mk.pages.new', [
-            'education' => $education,
-            'regions' => $regions,
-            'countries' => $country,
-            'stavka' => $stavka,
-            'partiya' => $partiya,
-            'academic_degree' => $academic_degree,
-            'ish_rejimi' => $ish_rejimi,
-            'degree_info' => $degree_info,
-            'special_degrees' => $special_degree,
-            'degree' => $degree,
-            'nationalities' => $nationalities,
-            'diplom_types' => $diplom_types,
-            'today' => $date,
-            'language' => $language,
-            'yesterday' => $yesterday,
-            'date18' => $maxdateofbirth,
-            'date80' => $mindateofbirth,
-            'minpassportdate' => $minpassportdate,
-
+        return view('mk.pages.doc.new', [
+            'data' => $data,
         ]);
 
 
-        return view('mk.pages.new');
+        return view('mk.pages.doc.new');
     }
 
     public function create()
@@ -87,6 +49,9 @@ class DocController extends Controller
     public function store(Request $request)
     {
         //
+
+
+        return $request;
     }
 
 

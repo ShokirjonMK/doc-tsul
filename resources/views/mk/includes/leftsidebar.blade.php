@@ -16,8 +16,7 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu icon-style-1 icon-list-style-2">
 				<ul id="accordion-menu">
-					@include('admin.includes.menu')
-				
+					@include('mk.includes.menu')
 				</ul>
 			</div>
 		</div>

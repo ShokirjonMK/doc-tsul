@@ -15,8 +15,7 @@
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu icon-style-1 icon-list-style-2">
 				<ul id="accordion-menu">
-					<?php echo $__env->make('admin.includes.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-				
+					<?php echo $__env->make('mk.includes.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 				</ul>
 			</div>
 		</div><?php /**PATH C:\wamp64\www\doc-tsul\resources\views/mk/includes/leftsidebar.blade.php ENDPATH**/ ?>

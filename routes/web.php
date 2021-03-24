@@ -100,6 +100,7 @@ Route::group([
     'middleware' => ['web', 'auth']
 ], function () {
 
+    Route::resource('doc', 'DocController');
     Route::get('/', 'DocController@index')->name('doc');
     Route::get('/new', 'DocController@new')->name('doc.new');
 });
