@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-     protected $redirectTo = '/backoffice';
+    protected $redirectTo = '/doc';
     // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
@@ -41,24 +41,22 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-     public function login(Request $request)
-    {   
+    public function login(Request $request)
+    {
         $input = $request->all();
-  
+
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required',
         ]);
-  
-//        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        //        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         $fieldType =  'username';
-        if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
-        {
-            return redirect('/backoffice');
-        }else{
+        if (auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
+            return redirect('/doc');
+        } else {
             return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+                ->with('error', 'Email-Address And Password Are Wrong.');
         }
-          
     }
 }

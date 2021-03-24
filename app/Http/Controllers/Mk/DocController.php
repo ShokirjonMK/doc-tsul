@@ -17,6 +17,7 @@ use App\Models\Partiya;
 use App\Models\Region;
 use App\Models\SpecialDegree;
 use App\Models\Stavka;
+use App\User;
 use Illuminate\Http\Request;
 
 class DocController extends Controller
@@ -30,10 +31,13 @@ class DocController extends Controller
 
     public function new()
     {
+        $users = User::all();
+
         $data = 'sssss';
 
         return view('mk.pages.doc.new', [
             'data' => $data,
+            'users' => $users,
         ]);
 
 
@@ -50,6 +54,12 @@ class DocController extends Controller
     {
         //
 
+
+        $dateee = date('Y-m-d', strtotime($request->sanasi));
+
+
+
+        // return  $dateee;
 
         return $request;
     }

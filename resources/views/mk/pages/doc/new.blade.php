@@ -25,15 +25,12 @@
                 </div>
             </div>
 
-			<div class="pd-20 card-box mb-30">
-					
-				<form autocomplete="off" id="form-doc-mk" action="{{ route('doc.store') }}" class="" method="post" enctype="multipart/form-data">
-					@csrf
-					@include('mk.pages.doc.form')
+            <form autocomplete="off" id="form-doc-mk" action="{{ route('doc.store') }}" class="" method="post" enctype="multipart/form-data">
+                @csrf
+                @include('mk.pages.doc.form')
 
 
-				</form>
-			</div>
+            </form>
 		</div>
 	</div>
 @endsection

@@ -18,20 +18,19 @@
                         </nav>
                     </div>
                    <div class="col-md-6 col-sm-12 text-right">
-                           <button class="btn btn-primary" form="form-doc-mk" role="button" >
-                                Saqlash
-						   </button>
+						<button class="btn btn-primary" form="form-doc-mk" role="button" >
+							Saqlash
+						</button>
                    </div>
                 </div>
             </div>
 
-			<div class="pd-20 card-box mb-30">
-					
-				<form autocomplete="off" id="form-doc-mk" action="<?php echo e(route('doc.store')); ?>" class="" method="post" enctype="multipart/form-data">
-						<?php echo csrf_field(); ?>
-				<?php echo $__env->make('mk.pages.doc.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-				</form>
-			</div>
+            <form autocomplete="off" id="form-doc-mk" action="<?php echo e(route('doc.store')); ?>" class="" method="post" enctype="multipart/form-data">
+                <?php echo csrf_field(); ?>
+                <?php echo $__env->make('mk.pages.doc.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
+            </form>
 		</div>
 	</div>
 <?php $__env->stopSection(); ?>
