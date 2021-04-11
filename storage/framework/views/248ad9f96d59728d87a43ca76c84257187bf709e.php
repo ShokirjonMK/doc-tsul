@@ -5,21 +5,6 @@
             
         </div>
     </div>
-
-    
-<div>
-    <div>
-        <input type="text" id="tbTableName" placeholder="Enter Table Name" />
-        <input type="button" id="btAdd" value="Add Field" class="bt" />
-    </div>
-
-    <%--THE CONTAINER TO HOLD THE DYNAMICALLY CREATED ELEMENTS.--%>
-    <div id="main"></div>
-</div>
-
-
-
-
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
@@ -53,8 +38,16 @@
             </div>
         </div>
     </div>
-
-    <div class="row" >
+<hr>
+    <div class="row element " id="div_1">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label > Muddati :</label>
+                <input class="form-control date-picker" name="sanasi" value="<?php echo e(old('sanasi')); ?>" placeholder="Select Date" type="text">
+                
+            </div>
+        </div>
+        
         <div class="col-md-12 col-sm-12">
             <div class="html-editor pd-20 card-box mb-30">
                 
@@ -63,9 +56,14 @@
             </div>
         </div>
     </div>
+    
+   <h5 class="mb-20 h5 text-blue">
+
+        <span style="width:100%" class="bg-light-blue btn text-blue weight-500 add">
+        <i class="ion-plus-round"></i> Bo'lim qo'shish</span>
+    </h5>
 </div>
-  
-  
+    
 <div class="form-group">
             
     <label>
@@ -137,68 +135,47 @@ unset($__errorArgs, $__bag); ?>
 
 </script>
 
-<script>
-    $(document).ready(function () {
-        BindControls();
+<script type="text/javascript">
+var max = 5;
+
+    $(document).ready(function(){
+
+    // Add new element
+    $(".add").click(function(){
+
+        // Finding total number of elements added
+        var total_element = $(".element").length;
+        
+        // last <div> with element class id
+        var lastid = $(".element:last").attr("id");
+        var split_id = lastid.split("_");
+        var nextindex = Number(split_id[1]) + 1;
+
+        var max = 5;
+        // Check total number elements
+        if(total_element < max ){
+        // Adding new div container after last occurance of element class
+            $(".element:last").after("<div class='row element d-flex justify-content-between' id='div_"+ nextindex +"'></div>");
+            
+            // Adding element to <div>
+            // $("#div_" + nextindex).append("<input type='text' placeholder='Enter your skill' id='txt_"+ nextindex +"'>&nbsp;<span id='remove_" + nextindex + "' class='remove'>X</span>");
+            $("#div_" + nextindex).append(" <div class='col-md-3'> <div class='form-group'> <label > Muddati :</label> <input class='form-control date-picker' name='sanasi' placeholder='Select Date' type='text'> </div> </div><div class='col-md-3 mt-auto'> <div class='form-group'> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> O\'chirish </span></div> </div> <div class='col-md-12 col-sm-12'> <div class='html-editor pd-20 card-box mb-30'> <p>Hujjat matnini kiriting</p> <textarea class='textarea_editor form-control border-radius-0' name='word' placeholder='Enter text ...'></textarea> </div> </div>");
+        // <div class="col-md-3 mt-auto"> <div class="form-group"> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> Remove </span></div> </div>
+        }
+    
     });
 
-    function BindControls() {
+    // Remove element
+    $('.card-box').on('click','.remove',function(){
+    
+    var id = this.id;
+    var split_id = id.split("_");
+    var deleteindex = split_id[1];
 
-        var itxtCnt = 0;    // COUNTER TO SET ELEMENT IDs.
+    // Remove <div> with id
+    $("#div_" + deleteindex).remove();
 
-        // CREATE A DIV DYNAMICALLY TO SERVE A CONTAINER TO THE ELEMENTS.
-        var container = $(document.createElement('div')).css({
-            width: '100%',
-            clear: 'both',
-            'margin-top': '10px',
-            'margin-bottom': '10px'
-        });
-
-        // CREATE THE ELEMENTS.
-        $('#btAdd').click(function () {
-            itxtCnt = itxtCnt + 1;
-
-            $(container).append('<input type="text"' +
-                'placeholder="Field Name" class="input" id=tb' + itxtCnt + ' value="" />');
-
-            if (itxtCnt == 1) {
-                var divSubmit = $(document.createElement('div'));
-                $(divSubmit).append('<input type="button" id="btSubmit" value="Submit" class="bt"' +
-                    'onclick="getTextValue()" />');
-            }
-
-            // ADD EVERY ELEMENT TO THE MAIN CONTAINER.
-            $('#main').after(container, divSubmit);
-        });
-    }
-
-    // THE FUNCTION TO EXTRACT VALUES FROM TEXTBOXES AND POST THE VALUES (TO A WEB METHOD) USING AJAX.
-    var values = new Array();
-    function getTextValue() {
-        $('.input').each(function () {
-            if (this.value != '')
-                values.push(this.value);
-        });
-
-        if (values != '') {
-            // NOW CALL THE WEB METHOD WITH THE PARAMETERS USING AJAX.
-            $.ajax({
-                type: 'POST',
-                url: 'default.aspx/loadFields',
-                data: "{'fields':'" + values + "', 'table': '" + $('#tbTableName').val() + "'}",
-                dataType: 'json',
-                headers: { "Content-Type": "application/json" },
-                success: function (response) {
-                    values = [];    // EMPTY THE ARRAY.
-                    alert(response.d);
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(errorThrown);
-                }
-            });
-        }
-        else { alert("Fields cannot be empty.") }
-    }
+    }); 
+    });
 </script>
-
 <?php $__env->stopSection(); ?><?php /**PATH C:\wamp64\www\doc-tsul\resources\views/mk/pages/doc/form.blade.php ENDPATH**/ ?>
