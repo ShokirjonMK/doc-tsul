@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-         return redirect()->route('doc');
-//        return view('admin.index');
+        return redirect()->route('mk');
+        //        return view('admin.index');
     }
 }

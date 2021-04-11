@@ -13,13 +13,13 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('doc')}}">Bosh</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('mk')}}">Bosh</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Statistika</li>
                             </ol>
                         </nav>
                     </div>
                    <div class="col-md-6 col-sm-12 text-right">
-                           <a class="btn btn-primary " href="{{route('doc.new')}}" role="button" >
+                           <a class="btn btn-primary " href="{{route('doc.create')}}" role="button" >
                                 New one
                            </a>
                    </div>

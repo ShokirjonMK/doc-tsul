@@ -12,7 +12,7 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?php echo e(route('doc')); ?>">Bosh</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo e(route('mk')); ?>">Bosh</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Yangi hujjat kiritish</li>
                             </ol>
                         </nav>

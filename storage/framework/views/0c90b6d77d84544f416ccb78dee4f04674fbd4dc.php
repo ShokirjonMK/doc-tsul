@@ -13,13 +13,13 @@
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<?php echo e(route('doc')); ?>">Bosh</a></li>
+                                <li class="breadcrumb-item"><a href="<?php echo e(route('mk')); ?>">Bosh</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Statistika</li>
                             </ol>
                         </nav>
                     </div>
                    <div class="col-md-6 col-sm-12 text-right">
-                           <a class="btn btn-primary " href="<?php echo e(route('doc.new')); ?>" role="button" >
+                           <a class="btn btn-primary " href="<?php echo e(route('doc.create')); ?>" role="button" >
                                 New one
                            </a>
                    </div>

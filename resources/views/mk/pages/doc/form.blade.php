@@ -6,34 +6,30 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label > Nomi :</label>
                 <input type="text" name="name" value="{{ old('name') }}" class="form-control">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label > Raqami :</label>
                 <input type="number" value="{{ old('raqami') }}" name="raqami" class="form-control">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label > Muddati :</label>
                 <input class="form-control date-picker" name="sanasi" value="{{ old('sanasi') }}" placeholder="Select Date" type="text">
                 
             </div>
         </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-3 ">
             <div class="form-group">
                 <label>Ko'rishi kerak bo'lganlarni belgilang    </label>
                 <select name="users[]" class="selectpicker form-control" data-size="5" data-style="btn-outline-success" multiple data-actions-box="true" data-selected-text-format="count">
-                    <optgroup label="Condiments">
+                    <optgroup label="Xodimlar tanlang">
                         @foreach ($users as $user)
                             <option value="{{$user->id}}">{{$user->name}}</option>
                         @endforeach
@@ -41,9 +37,17 @@
                 </select>
             </div>
         </div>
-        
     </div>
 
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="html-editor pd-20 card-box mb-30">
+                {{-- <h4 class="h4 text-blue">bootstrap wysihtml5</h4> --}}
+                <p>Hujjat matnini kiriting</p>
+                <textarea class="textarea_editor form-control border-radius-0" name="word" placeholder="Enter text ..."></textarea>
+            </div>
+        </div>
+    </div>
 </div>
   
   
@@ -51,7 +55,7 @@
             {{-- <label>Passport fayl (pdf < 5 Mb): --}}
     <label>
         <span class="error">
-        @error('passport_pdf')
+        @error('document')
             {{ $message }}
             @enderror
     </span>

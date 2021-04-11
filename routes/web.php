@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,18 +19,11 @@ Route::get('/clear', function () {
     return Artisan::call('config:cache');
 });
 
-// Route::get('/', function () {
-//     return view('test');
-// });
-
 Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
-
-
-
 
 Route::get('/test', function () {
     return view('welcome');
@@ -89,18 +83,18 @@ Route::group([
 
 
 /*
-*
+*   Routes documents
 *
 */
-
-
 Route::group([
-    'prefix' => 'doc',
+    'prefix' => 'mk',
     'namespace' => 'Mk',
     'middleware' => ['web', 'auth']
 ], function () {
 
+    Route::get('/', 'AdminController@index')->name('mk');
     Route::resource('doc', 'DocController');
-    Route::get('/', 'DocController@index')->name('doc');
-    Route::get('/new', 'DocController@new')->name('doc.new');
+
+    // Route::get('/', 'DocController@index')->name('doc');
+    // Route::get('/new', 'DocController@new')->name('doc.new');
 });
