@@ -15,13 +15,13 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label > Raqami :</label>
-                <input type="number" value="{{ old('raqami') }}" name="raqami" class="form-control">
+                <input type="number" value="{{ old('number') }}" name="number" class="form-control">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label > Muddati :</label>
-                <input class="form-control date-picker" name="sanasi" value="{{ old('sanasi') }}" placeholder="Select Date" type="text">
+                <input class="form-control date-picker" name="end_date" value="{{ old('end_date') }}" placeholder="Select Date" type="text">
                 
             </div>
         </div>
@@ -38,29 +38,21 @@
             </div>
         </div>
     </div>
-<hr>
+
     <div class="row element " id="div_1">
-        <div class="col-md-3">
-            <div class="form-group">
-                <label > Muddati :</label>
-                <input class="form-control date-picker" name="sanasi" value="{{ old('sanasi') }}" placeholder="Select Date" type="text">
-                
-            </div>
-        </div>
-        
         <div class="col-md-12 col-sm-12">
             <div class="html-editor pd-20 card-box mb-30">
                 {{-- <h4 class="h4 text-blue">bootstrap wysihtml5</h4> --}}
-                <p>Hujjat matnini kiriting</p>
-                <textarea class="textarea_editor form-control border-radius-0" name="word" placeholder="Enter text ..."></textarea>
+                <p>Hujjat matnini to'liq kiriting</p>
+                <textarea class="textarea_editor form-control border-radius-0" id='mk_text_area_editor_1' name="word_all" placeholder="Matnni kiriting ..."></textarea>
             </div>
         </div>
     </div>
-    
+<hr>    
    <h5 class="mb-20 h5 text-blue">
 
         <span style="width:100%" class="bg-light-blue btn text-blue weight-500 add">
-        <i class="ion-plus-round"></i> Bo'lim qo'shish</span>
+        <i class="ion-plus-round"></i> Bo'limlar bo'yicha taqsimod qo'shish </span>
     </h5>
 </div>
     
@@ -145,17 +137,23 @@ var max = 5;
 
         var max = 5;
         // Check total number elements
-        if(total_element < max ){
+        // if(total_element < max ){
         // Adding new div container after last occurance of element class
             $(".element:last").after("<div class='row element d-flex justify-content-between' id='div_"+ nextindex +"'></div>");
             
             // Adding element to <div>
             // $("#div_" + nextindex).append("<input type='text' placeholder='Enter your skill' id='txt_"+ nextindex +"'>&nbsp;<span id='remove_" + nextindex + "' class='remove'>X</span>");
-            $("#div_" + nextindex).append(" <div class='col-md-3'> <div class='form-group'> <label > Muddati :</label> <input class='form-control date-picker' name='sanasi' placeholder='Select Date' type='text'> </div> </div><div class='col-md-3 mt-auto'> <div class='form-group'> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> O\'chirish </span></div> </div> <div class='col-md-12 col-sm-12'> <div class='html-editor pd-20 card-box mb-30'> <p>Hujjat matnini kiriting</p> <textarea class='textarea_editor form-control border-radius-0' name='word' placeholder='Enter text ...'></textarea> </div> </div>");
+            $("#div_" + nextindex).append(" <div class='col-md-3'> <div class='form-group'> <label > Muddati :</label> <input class='form-control date-picker' id='mk_date-picker_" + nextindex + "' name='sana[]' placeholder='Tanlanmasa asosiy olinadi' type='text'> </div>  </div> <div class='col-md-3'> <div class='form-group'> <label>Xodimlarni tanlang</label> <select id='mk_select_" + nextindex + "' name='user[]' class='custom-select2 form-control' style='width: 100%;'>  @foreach ($users as $user) <option value='{{$user->id}}'>{{$user->name}}</option> @endforeach </select> </div> </div> <div class='col-md-3 mt-auto'> <div class='form-group'> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> O\'chirish </span></div> </div> <div class='col-md-12 col-sm-12'> <div class='html-editor pd-20 card-box mb-30'> <p>Hujjat matnini kiriting</p> <textarea class='textarea_editor form-control border-radius-0' id='mk_text_area_editor_" + nextindex + "' name='word[]' placeholder='Bo`lim matnini kiriting ...'></textarea> </div> </div>");
         // <div class="col-md-3 mt-auto"> <div class="form-group"> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> Remove </span></div> </div>
-        }
+        // }
+
+         $("#mk_text_area_editor_"+nextindex).wysihtml5({html:!0})
+         $("#mk_date-picker_"+nextindex).datepicker({language:"en",autoClose:!0,dateFormat:"dd MM yyyy"})
+          $("#mk_select_"+nextindex).tagsinput();
     
     });
+
+    // $(".textarea_editor").wysihtml5({html:!0})})
 
     // Remove element
     $('.card-box').on('click','.remove',function(){
@@ -169,5 +167,9 @@ var max = 5;
 
     }); 
     });
+
+    // function asdasd(vaaa){
+    //     $("#mk_text_area_editor_"+vaaa).wysihtml5({html:!0})
+    // }
 </script>
 @endsection
