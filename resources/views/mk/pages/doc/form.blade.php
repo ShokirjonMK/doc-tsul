@@ -2,6 +2,19 @@
     <div class="clearfix">
         <div class="pull-left">
             <h4 class="text-blue h4">Maydonlarni to'ldiring!</h4>
+
+            
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
             {{-- <p class="mb-30">Just add class <code>.selectpicker</code> to select</p> --}}
         </div>
     </div>

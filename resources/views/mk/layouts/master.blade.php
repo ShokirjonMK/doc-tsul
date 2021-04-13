@@ -194,6 +194,21 @@
 	</script>
 	@endif
 
+	@if (session('validate'))
+		<script type="text/javascript">
+		 // $('#sa-test').click(function () {
+		$( document ).ready(function() {
+            swal(
+                {
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Xatolik yuz berdi!',
+                }
+            )
+        });
+	</script>
+	@endif
+
 	@yield('js')
 </body>
 </html>

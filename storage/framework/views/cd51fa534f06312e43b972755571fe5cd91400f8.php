@@ -183,6 +183,21 @@
 	</script>
 	<?php endif; ?>
 
+	<?php if(session('validate')): ?>
+		<script type="text/javascript">
+		 // $('#sa-test').click(function () {
+		$( document ).ready(function() {
+            swal(
+                {
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Xatolik yuz berdi!',
+                }
+            )
+        });
+	</script>
+	<?php endif; ?>
+
 	<?php echo $__env->yieldContent('js'); ?>
 </body>
 </html><?php /**PATH C:\wamp64\www\doc-tsul\resources\views/mk/layouts/master.blade.php ENDPATH**/ ?>
