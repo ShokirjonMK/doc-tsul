@@ -46,7 +46,7 @@ class StaffController extends Controller
     public function index()
     {
         $staff = Staff::all();
-        return view('admin.pages.staff.index' , [
+        return view('admin.pages.staff.index', [
             'data' => $staff,
         ]);
     }
@@ -58,11 +58,11 @@ class StaffController extends Controller
      */
     public function create()
     {
-//        ini_set("memory_limit", "100M");
-//        ini_set('post_max_size', '50M');
-//        ini_set('upload_max_filesize', '50M');
+        //        ini_set("memory_limit", "100M");
+        //        ini_set('post_max_size', '50M');
+        //        ini_set('upload_max_filesize', '50M');
         $date = date("Y-m-d");
-//        $date18 = strtotime("-18 year", strtotime($date));
+        //        $date18 = strtotime("-18 year", strtotime($date));
 
         $yesterday = date("Y-m-d", strtotime("-1 day", strtotime($date)));
         $maxdateofbirth = date("Y-m-d", strtotime("-18 year", strtotime($date)));
@@ -82,7 +82,7 @@ class StaffController extends Controller
         $special_degree = SpecialDegree::where('status', 1)->get();
         $language = Lang::where('status', 1)->get();
         // return $nationalities;
-        return view('admin.pages.staff.create' , [
+        return view('admin.pages.staff.create', [
             'education' => $education,
             'regions' => $regions,
             'countries' => $country,
@@ -95,12 +95,12 @@ class StaffController extends Controller
             'degree' => $degree,
             'nationalities' => $nationalities,
             'diplom_types' => $diplom_types,
-            'today'=>$date,
-            'language'=>$language,
-            'yesterday'=>$yesterday,
-            'date18'=>$maxdateofbirth,
-            'date80'=>$mindateofbirth,
-            'minpassportdate'=>$minpassportdate,
+            'today' => $date,
+            'language' => $language,
+            'yesterday' => $yesterday,
+            'date18' => $maxdateofbirth,
+            'date80' => $mindateofbirth,
+            'minpassportdate' => $minpassportdate,
 
         ]);
     }
@@ -113,46 +113,46 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-//        ini_set('post_max_size' , '1000');
-//        ini_set('upload_max_filesize' , '1000');
-//        ini_set('max_file_size' , '1000');
+        //        ini_set('post_max_size' , '1000');
+        //        ini_set('upload_max_filesize' , '1000');
+        //        ini_set('max_file_size' , '1000');
         // return Input::all();
 
-//         return $request;
+        //         return $request;
 
-//        return    $request->server('CONTENT_LENGTH');
+        //        return    $request->server('CONTENT_LENGTH');
 
         $input = $request->all();
 
         $validator = Validator::make($input, [
 
-        	'first_name'               => ['required' , 'max:70' , 'string'],
-		    'last_name'                => ['required' , 'max:70' , 'string'],
-//            'middle_name'              => ['required' , 'max:70' , 'string'],
+            'first_name'               => ['required', 'max:70', 'string'],
+            'last_name'                => ['required', 'max:70', 'string'],
+            //            'middle_name'              => ['required' , 'max:70' , 'string'],
             'country_id'               => ['required'],
             'region_id'                => ['required'],
             'area_id'                  => ['required'],
-            'address'                  => ['required' , 'string'],
-            'birthday'                 => ['required' , 'date'],
-//            'birthday'                 => ['required|date|before:25 years ago'],
-            'nationality_id'           => ['required' ],
+            'address'                  => ['required', 'string'],
+            'birthday'                 => ['required', 'date'],
+            //            'birthday'                 => ['required|date|before:25 years ago'],
+            'nationality_id'           => ['required'],
             'phone'                    => ['required'],
-//            'phone_home'               => ['required'],
-            'passport_seria'           => ['required' , 'max:2' , 'string'],
-            'passport_number'          => ['required' ],
-            'passport_jshshir'         => ['required' ],
-            'passport_given_by'        => ['required' ],
-            'passport_issued_date'     => ['required' ],
-            'passport_expiration_date' => ['required' ],
-//            'passport_image'           => ['required' , 'image' ],
-            'stavka_id'                => ['required' ],
-            'ish_rejimi_id'            => ['required' ],
-            'degree_info_id'           => ['required' ],
-            'degree_id'                => ['required' ],
-            'gender'                   => ['required' ],
-            'special_degree_id'        => ['required' ],
-            'partiya_id'               => ['required' ],
-//            'image'                    => 'required|mimes:jpeg,bmp,png|max:5000',
+            //            'phone_home'               => ['required'],
+            'passport_seria'           => ['required', 'max:2', 'string'],
+            'passport_number'          => ['required'],
+            'passport_jshshir'         => ['required'],
+            'passport_given_by'        => ['required'],
+            'passport_issued_date'     => ['required'],
+            'passport_expiration_date' => ['required'],
+            //            'passport_image'           => ['required' , 'image' ],
+            'stavka_id'                => ['required'],
+            'ish_rejimi_id'            => ['required'],
+            'degree_info_id'           => ['required'],
+            'degree_id'                => ['required'],
+            'gender'                   => ['required'],
+            'special_degree_id'        => ['required'],
+            'partiya_id'               => ['required'],
+            //            'image'                    => 'required|mimes:jpeg,bmp,png|max:5000',
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'a');
@@ -192,21 +192,22 @@ class StaffController extends Controller
         $staff->deputat = $request->deputat;
         $staff->lang_id = json_encode($request->lang);
 
-        if($request->file('image')) {
+        if ($request->file('image')) {
             $staff->image = 'data:image/png;base64,' . base64_encode(file_get_contents($request->file('image')));
         }
-        if($request->file('passport_image')) {
+        if ($request->file('passport_image')) {
             $staff->passport_image = 'data:image/png;base64,' . base64_encode(file_get_contents($request->file('passport_image')));
         }
-        if($request->file('passport_pdf')) {
+        if ($request->file('passport_pdf')) {
             $staff->passport_pdf = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('passport_pdf')));
         }
-//         $staff->diplom_copy = 'data:image/png;base64,'.base64_encode(file_get_contents($request->file('diplom_copy')));
-//         $staff->diplom_ilova_copy = 'data:image/png;base64,'.base64_encode(file_get_contents($request->file('diplom_ilova_copy')));
+
+        //         $staff->diplom_copy = 'data:image/png;base64,'.base64_encode(file_get_contents($request->file('diplom_copy')));
+        //         $staff->diplom_ilova_copy = 'data:image/png;base64,'.base64_encode(file_get_contents($request->file('diplom_ilova_copy')));
         $staff->save();
 
-        return redirect()->route('staff.index', $staff->id)->with('success' , 'Xodim qo`shildi');
-//        return redirect()->route('staff.show', $staff->id)->with('success' , 'Xodim qo`shildi');
+        return redirect()->route('staff.index', $staff->id)->with('success', 'Xodim qo`shildi');
+        //        return redirect()->route('staff.show', $staff->id)->with('success' , 'Xodim qo`shildi');
     }
 
     /**
@@ -217,7 +218,7 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-//return "asdad";
+        //return "asdad";
         $staff = Staff::find($id);
         $regions = Region::where('status', 1)->get();
         $relative = Relatives::where('staff_id', $id)->get();
@@ -233,27 +234,27 @@ class StaffController extends Controller
 
         $inactivity_types = InactivityType::where('status', 1)->get();
 
-        $department = Department::select('id','name', 'count_workers')->get();
+        $department = Department::select('id', 'name', 'count_workers')->get();
         $is_worker_now = StDep::where('staff_id', $id)->where('status', 1)->get();
         $st_dep = StDep::groupBy('department_id')->count();
-//
-//$stdeppppp = DB::table('st_dep')
-//                 ->select('department_id', DB::raw('count(*) as total'))
-//                 ->groupBy('department_id')
-//                 ->get();
-//
-//$c = Department::leftJoin('st_dep', function($join) {
-//      $join->on('st_dep.department_id', '=', 'department.id');
-//    })
-//    ->where('orders.department_id')
-//    ->get();
+        //
+        //$stdeppppp = DB::table('st_dep')
+        //                 ->select('department_id', DB::raw('count(*) as total'))
+        //                 ->groupBy('department_id')
+        //                 ->get();
+        //
+        //$c = Department::leftJoin('st_dep', function($join) {
+        //      $join->on('st_dep.department_id', '=', 'department.id');
+        //    })
+        //    ->where('orders.department_id')
+        //    ->get();
 
 
         $country = Country::all();
 
         $RelarivesType = RelativesType::where('status', 1)->get();
-//return  $mukofot_staff;
-        return view('admin.pages.staff.show' , [
+        //return  $mukofot_staff;
+        return view('admin.pages.staff.show', [
             'data' => $staff,
             'st_dep' => $st_dep,
             'regions' => $regions,
@@ -276,7 +277,7 @@ class StaffController extends Controller
 
     public function inactivity(Request $request)
     {
-//        return $request;
+        //        return $request;
         $input = $request->all();
 
         $validator = Validator::make($input, [
@@ -300,21 +301,20 @@ class StaffController extends Controller
         $inactivityNew->inactivity_type_id = $request->inactivity_type_id;
         $inactivityNew->status = 1;
 
-         if($request->file('in_file')) {
+        if ($request->file('in_file')) {
             $inactivityNew->file = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('in_file')));
         }
 
-        if ($inactivityNew->save()){
+        if ($inactivityNew->save()) {
             return redirect()->back()->with('success', 'a');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
     }
 
     public function qualification(Request $request)
     {
-//        return $request;
+        //        return $request;
         $input = $request->all();
 
         $validator = Validator::make($input, [
@@ -338,24 +338,23 @@ class StaffController extends Controller
         $qualification_info_New->end_date = $request->end_date;
         $qualification_info_New->status = 1;
 
-        if ($qualification_info_New->save()){
+        if ($qualification_info_New->save()) {
             return redirect()->back()->with('success', 'a');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
     }
 
     public function workplace(Request $request)
     {
-//        return $request;
+        //        return $request;
         $input = $request->all();
 
         $validator = Validator::make($input, [
             'start_time'          => ['required'],
             'end_time'            => ['required'],
-            'workplace'           => ['required' , 'max:255' , 'string'],
-            'position'            => ['required', 'max:255' , 'string'],
+            'workplace'           => ['required', 'max:255', 'string'],
+            'position'            => ['required', 'max:255', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -371,24 +370,23 @@ class StaffController extends Controller
         $work_place->end_time = $request->end_time;
         $work_place->status = 1;
 
-        if ($work_place->save()){
+        if ($work_place->save()) {
             return redirect()->back()->with('success', 'a');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
     }
 
     public function diplom(Request $request)
     {
-//        return $request;
+        //        return $request;
         $input = $request->all();
 
         $validator = Validator::make($input, [
 
             'university_id'               => ['required'],
-            'specialization'        => ['required' , 'max:255' , 'string'],
-            'diplom_seria'             => ['required', 'max:7' , 'string'],
+            'specialization'        => ['required', 'max:255', 'string'],
+            'diplom_seria'             => ['required', 'max:7', 'string'],
 
         ]);
         if ($validator->fails()) {
@@ -407,27 +405,25 @@ class StaffController extends Controller
         $diploma->diplom_type_id = $request->diplom_type_id;
         $diploma->status = 1;
 
-        if($request->file('diplom_ilova_copy')) {
+        if ($request->file('diplom_ilova_copy')) {
             $diploma->diplom_ilova_copy = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('diplom_ilova_copy')));
         }
 
-        if($request->file('diplom_copy')) {
+        if ($request->file('diplom_copy')) {
             $diploma->diplom_copy = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('diplom_copy')));
         }
 
-        if ($diploma->save()){
+        if ($diploma->save()) {
             return redirect()->back()->with('success', 'a');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
-
     }
 
 
     public function relative(Request $request)
     {
-//        return $request;
+        //        return $request;
 
         $RelarivesType = RelativesType::where('id', $request->RelativesType)->get();
 
@@ -435,8 +431,8 @@ class StaffController extends Controller
 
         $validator = Validator::make($input, [
 
-            'RelativesType'    => ['required' , 'max:255' , 'string'],
-            'full_name'        => ['required' , 'max:255' , 'string'],
+            'RelativesType'    => ['required', 'max:255', 'string'],
+            'full_name'        => ['required', 'max:255', 'string'],
             'work'             => ['required'],
             'birthday'         => ['required'],
             'address'          => ['required'],
@@ -460,24 +456,23 @@ class StaffController extends Controller
         $relatives->area_id = $request->area_id;
         $relatives->created_user = Auth::id();
 
-        if ($relatives->save()){
+        if ($relatives->save()) {
             return redirect()->back()->with('success', 'a');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
     }
 
     public function mukofot(Request $request)
     {
-//        return $request;
+        //        return $request;
 
         $input = $request->all();
 
         $validator = Validator::make($input, [
 
             'mukofot_type_id'       => ['required'],
-            'name'                  => ['required' , 'max:255' , 'string'],
+            'name'                  => ['required', 'max:255', 'string'],
             'date'                  => ['required'],
             'id'                    => ['required'],
 
@@ -496,10 +491,9 @@ class StaffController extends Controller
         $mukofot->description = $request->description;
         $mukofot->status = 1;
 
-        if ($mukofot->save()){
+        if ($mukofot->save()) {
             return redirect()->back()->with('success', 'a');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
     }
@@ -528,11 +522,11 @@ class StaffController extends Controller
 
         $academic_degree = AcademicDegree::where('status', 1)->get();
         $degree = Degree::where('status', 1)->get();
-         $special_degree = SpecialDegree::where('status', 1)->get();
-         $language = Lang::where('status', 1)->get();
+        $special_degree = SpecialDegree::where('status', 1)->get();
+        $language = Lang::where('status', 1)->get();
 
         // return $nationalities;
-        return view('admin.pages.staff.edit' , [
+        return view('admin.pages.staff.edit', [
             'education' => $education,
             'regions' => $regions,
             'areas' => $area,
@@ -561,36 +555,36 @@ class StaffController extends Controller
     public function update(Request $request, $id)
     {
 
-//        return $id;
-//        return $request;
+        //        return $id;
+        //        return $request;
 
         $input = $request->all();
 
         $validator = Validator::make($input, [
 
-            'first_name'               => ['required' , 'max:255' , 'string'],
-            'last_name'                => ['required' , 'max:255' , 'string'],
-            'middle_name'              => ['required' , 'max:255' , 'string'],
+            'first_name'               => ['required', 'max:255', 'string'],
+            'last_name'                => ['required', 'max:255', 'string'],
+            'middle_name'              => ['required', 'max:255', 'string'],
             'country_id'               => ['required'],
             'region_id'                => ['required'],
             'area_id'                  => ['required'],
-            'address'                  => ['required' , 'string'],
-            'birthday'                 => ['required' , 'date'],
-            'nationality_id'           => ['required' ],
+            'address'                  => ['required', 'string'],
+            'birthday'                 => ['required', 'date'],
+            'nationality_id'           => ['required'],
             'phone'                    => ['required'],
-//            'phone_home'               => ['required'],
-            'passport_seria'           => ['required'  ],
-            'passport_number'          => ['required' ],
-            'passport_jshshir'         => ['required' ],
-            'passport_given_by'        => ['required' ],
-            'passport_issued_date'     => ['required' ],
-            'passport_expiration_date' => ['required' ],
-//            'passport_image'           => ['required' , 'image' ],
-            'stavka_id'                => ['required' ],
-            'ish_rejimi_id'            => ['required' ],
-            'degree_info_id'           => ['required' ],
-            'gender'                   => ['required' ],
-//            'image'                    => 'required|mimes:jpeg,bmp,png|max:5000',
+            //            'phone_home'               => ['required'],
+            'passport_seria'           => ['required'],
+            'passport_number'          => ['required'],
+            'passport_jshshir'         => ['required'],
+            'passport_given_by'        => ['required'],
+            'passport_issued_date'     => ['required'],
+            'passport_expiration_date' => ['required'],
+            //            'passport_image'           => ['required' , 'image' ],
+            'stavka_id'                => ['required'],
+            'ish_rejimi_id'            => ['required'],
+            'degree_info_id'           => ['required'],
+            'gender'                   => ['required'],
+            //            'image'                    => 'required|mimes:jpeg,bmp,png|max:5000',
         ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('error', 'a');
@@ -631,20 +625,20 @@ class StaffController extends Controller
         $staff->deputat = $request->deputat;
         $staff->lang_id = json_encode($request->lang);
 
-        if($request->file('image')) {
+        if ($request->file('image')) {
             $staff->image = 'data:image/png;base64,' . base64_encode(file_get_contents($request->file('image')));
         }
-        if($request->file('passport_image')) {
+        if ($request->file('passport_image')) {
             $staff->passport_image = 'data:image/png;base64,' . base64_encode(file_get_contents($request->file('passport_image')));
         }
-        if($request->file('passport_pdf')) {
+        if ($request->file('passport_pdf')) {
             $staff->passport_pdf = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('passport_pdf')));
         }
-//         $staff->diplom_ilova_copy = 'data:image/png;base64,'.base64_encode(file_get_contents($request->file('diplom_ilova_copy')));
+        //         $staff->diplom_ilova_copy = 'data:image/png;base64,'.base64_encode(file_get_contents($request->file('diplom_ilova_copy')));
         $staff->update();
-        return redirect()->route('staff.index', $staff->id)->with('success' , 'A');
+        return redirect()->route('staff.index', $staff->id)->with('success', 'A');
 
-//        return redirect()->back()->with('success' , 'A');
+        //        return redirect()->back()->with('success' , 'A');
     }
 
     /**
@@ -659,10 +653,11 @@ class StaffController extends Controller
     }
 
 
-     public function pdf_for_staff($id){
+    public function pdf_for_staff($id)
+    {
 
-    	$staff = Staff::find($id);
-    	$staff->lang_id = json_decode($staff->lang_id);
+        $staff = Staff::find($id);
+        $staff->lang_id = json_decode($staff->lang_id);
 
         $relarive = Relatives::where('staff_id', $id)->where('status', 1)->get();
         $education = Education::where('staff_id', $id)->where('status', 1)->get();
@@ -670,23 +665,23 @@ class StaffController extends Controller
         $mukofot_all = Mukofot::where('staff_id', $id)->where('status', 1)->get();
 
 
-    	return PDF::loadView('admin.pages.staff.resume' , [
-    	    'data' => $staff,
-            'relative'=>$relarive,
-            'education'=>$education,
+        return PDF::loadView('admin.pages.staff.resume', [
+            'data' => $staff,
+            'relative' => $relarive,
+            'education' => $education,
 
-            'workplaces'=>$workplaces,
-            'mukofot_all'=>$mukofot_all,
-        ])->download($staff->last_name.$staff->first_name.'.pdf');
+            'workplaces' => $workplaces,
+            'mukofot_all' => $mukofot_all,
+        ])->download($staff->last_name . $staff->first_name . '.pdf');
     }
 
     public function get_staff(Request $request)
     {
-               $input = $request->all();
+        $input = $request->all();
 
         $validator = Validator::make($input, [
             'id'                    => ['required'],
-            'position'              => ['required' , 'max:255' , 'string'],
+            'position'              => ['required', 'max:255', 'string'],
             'start_date'            => ['required'],
             'start_order'           => ['required'],
             'department_id'         => ['required'],
@@ -700,9 +695,9 @@ class StaffController extends Controller
 
         $st_dep = new StDep();
 
-        if($request->boss =="on"){
+        if ($request->boss == "on") {
             $st_dep->boss = 1;
-        }else{
+        } else {
             $st_dep->boss = 0;
         }
 
@@ -714,22 +709,21 @@ class StaffController extends Controller
         $st_dep->created_user = Auth::id();;
         $st_dep->status = 1;
 
-        if($request->file('start_order')) {
+        if ($request->file('start_order')) {
             $st_dep->start_order = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('start_order')));
         }
 
-        if ($st_dep->save()){
+        if ($st_dep->save()) {
             return redirect()->back()->with('success', 'a');
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
     }
 
     public function fire_staff(Request $request)
     {
-               $input = $request->all();
-//return $request;
+        $input = $request->all();
+        //return $request;
         $validator = Validator::make($input, [
             'id'                  => ['required'],
             'end_date'            => ['required'],
@@ -752,32 +746,29 @@ class StaffController extends Controller
         $st_dep->updated_user = Auth::id();
         $st_dep->status = 0;
 
-        if($request->file('end_order')) {
+        if ($request->file('end_order')) {
             $st_dep->end_order = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('end_order')));
         }
 
-        if ($st_dep->update()){
+        if ($st_dep->update()) {
 
             $work_place = new WorkPlaces();
 
             $work_place->staff_id = $request->id;
-            $work_place->name = "TDYU ".$st_dep->department->name;
+            $work_place->name = "TDYU " . $st_dep->department->name;
             $work_place->position = $st_dep->position;
             $work_place->start_time = $st_dep->start_date;
             $work_place->end_time = $st_dep->end_date;
             $work_place->created_user = Auth::id();
             $work_place->status = 1;
 
-            if ($work_place->save()){
+            if ($work_place->save()) {
                 return redirect()->back()->with('success', 'a');
-            }
-            else{
+            } else {
                 return redirect()->back()->with('error', 'a');
             }
-        }
-        else{
+        } else {
             return redirect()->back()->with('error', 'a');
         }
     }
-    
 }

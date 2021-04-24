@@ -20,7 +20,7 @@
                     </div>
                    <div class="col-md-6 col-sm-12 text-right">
                            <a class="btn btn-primary " href="<?php echo e(route('doc.create')); ?>" role="button" >
-                                New one
+                                Yangi hijjat kiritish
                            </a>
                    </div>
                 </div>

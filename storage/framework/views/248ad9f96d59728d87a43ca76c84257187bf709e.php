@@ -1,9 +1,33 @@
-<div class="pd-20 card-box mb-30">
-    <div class="clearfix">
-        <div class="pull-left">
-            <h4 class="text-blue h4">Maydonlarni to'ldiring!</h4>
+<?php $__env->startSection('link'); ?>
+<style>
+    .kichraytirbutton{
+        height: 39px;
+    }
+</style>
+<?php $__env->stopSection(); ?>
 
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix row mb-2">
+        <div class="col-md-6">
+            <div class="pull-left">
+                <h4 class="text-blue h4">Maydonlarni to'ldiring!</h4>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="pull-right mr-3">
+                <h5 class="h4 mt-1">Holati</h5>
+            </div>
+        </div>
+        <div class="col-md-4 kichraytirbutton">
             
+                <select class="selectpicker form-control" required name="status" data-style="btn-outline-primary">
+                                           
+                    <option value="1" selected >Faol</option>
+                    <option value="0">Faol emas</option>
+                </select>
+            
+        </div>
+    </div>
 <?php if($errors->any()): ?>
     <div class="alert alert-danger">
         <ul>
@@ -12,35 +36,31 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>
     </div>
-<?php endif; ?>
-
-
-            
-        </div>
-    </div>
+<?php endif; ?>    
+    
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
-                <label > Nomi :</label>
+                <label> Nomi :</label>
                 <input type="text" name="name" value="<?php echo e(old('name')); ?>" class="form-control">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="form-group">
                 <label > Raqami :</label>
                 <input type="number" value="<?php echo e(old('number')); ?>" name="number" class="form-control">
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="form-group">
                 <label > Muddati :</label>
                 <input class="form-control date-picker" name="end_date" value="<?php echo e(old('end_date')); ?>" placeholder="Select Date" type="text">
                 
             </div>
         </div>
-        <div class="col-md-3 ">
+        <div class="col-md-4">
             <div class="form-group">
-                <label>Ko'rishi kerak bo'lganlarni belgilang    </label>
+                <label>Xodimlarni biriktirish</label>
                 <select name="users[]" class="selectpicker form-control" data-size="5" data-style="btn-outline-success" multiple data-actions-box="true" data-selected-text-format="count">
                     <optgroup label="Xodimlar tanlang">
                         <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -48,6 +68,15 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </optgroup>
                 </select>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label>Barcha uchun</label>
+                <div class="custom-control custom-checkbox mb-5">
+                    <input type="checkbox" class="custom-control-input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Barcha uchun tanlasangiz xodimlarni belgilamang" id="customCheck2">
+                    <label class="custom-control-label" name="user_all" for="customCheck2" ></label>
+                </div>
             </div>
         </div>
     </div>
@@ -89,7 +118,9 @@ unset($__errorArgs, $__bag); ?>
     <div class="img-select ">
         <button type="button" class="btn btn-light documet-select-button" data-select="document-mk">Fayl tanlang <i class="icon-copy fa fa-pencil" aria-hidden="true"></i></button>
     </div>
-    <input type="file" id="document-mk" class="form-control" hidden="true" name="document" accept="application/pdf" />
+
+    <input type="file" id="document-mk" class="form-control file-input" hidden="true" name="document" accept="application/pdf" />
+  <input required="true" hidden type="file" id="file_res" class="form-control file-input" name="order_file" accept="application/pdf">
 </div>
 
 
@@ -126,6 +157,10 @@ unset($__errorArgs, $__bag); ?>
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('.'+id).attr('src', e.target.result);
+                $('#file_res').val( e.target.result);
+                console.log(e.target.result);
+                console.log($('#file_res').val);
+
             }
             reader.readAsDataURL(input.files[0]);
         }
@@ -134,6 +169,7 @@ unset($__errorArgs, $__bag); ?>
     //input o'zgarganda 
     $("#document-mk").change(function () {
         var id = $(this).attr('id');
+        console.log(id);
         readURL(this , id);
         $("#iframePdf").css("display", "block");
     });

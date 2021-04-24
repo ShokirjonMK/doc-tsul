@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Mk;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mk\Doc;
+use Illuminate\Support\Facades\Auth;
 use App\User;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
+use App\Models\Mk\Doc;
+use App\Models\Mk\Files;
+use League\CommonMark\Block\Element\Document;
+
+// use App\Models\Mk\Files;
+
 
 class DocController extends Controller
 {
@@ -55,58 +63,72 @@ class DocController extends Controller
         $validator = Validator::make($input, [
             'name'                 => ['required', 'max:255', 'string'],
             'number'               => ['required'],
-            'end_date'               => ['required'],
-            'users'                => ['required'],
+            'end_date'             => ['required'],
+            // 'users'                => ['required'],
             'word_all'             => ['required'],
             'document'             => 'required|mimes:pdf|max:5000',
         ]);
 
-        if ($validator->fails()) {
+        /*       if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('validate', 'a');
         }
 
+        */
+        // return $request->file('document');
         $new_doc = new Doc();
 
+        $new_doc->status = $request->status;
         $new_doc->name = $request->name;
         $new_doc->number = $request->number;
+
+        $request->end_date = date('Y-m-d', strtotime($request->end_date));
+
         $new_doc->end_date = $request->end_date;
-        $new_doc->word = $request->word_all;
+        $new_doc->word_all = $request->word_all;
+        $new_doc->users = $request->users;
+        $new_doc->created_by = Auth::id();
 
-
-        if ($request->file('document')) {
-            $new_doc->document = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
-        }
-
-        // $path_name = '';
-        // if ($request->hasFile('document')) {
-        //     $file = $request->file('document');
-        //     $name = $request->name . '_' . date('Y-m-d');
-        //     $ext = $file->getClientOriginalExtension();
-        //     $full_name = $name . '.' . $ext;
-        //     $path_name = '/documents/' . $full_name;
-        //     $file->move('/documents/', $full_name);
+        // if ($request->file('document')) {
+        //     $new_doc->document = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
         // }
 
         if ($request->hasFile('document')) {
-            $file = $request->file('document');
-            Storage::disk('doc')->put('/document/', $file);
-            $path = '/admission/overseas/other/' . $file->hashName();
-            $new_doc->document = $path;
-            return $path;
+            $fileName = time() . '.' . $request->document->extension();
+            $request->document->move(public_path('doc/document'), $fileName);
         }
 
+        // if (is_array($request->users)) {
+        //     foreach ($$request->users as $key => $value) {
+        //     }
+        // }
 
+        $end_date = date('Y-m-d', strtotime($request->end_date));
 
+        if ($new_doc->save()) {
+            if ($request->file('document')) {
+                $new_file = new Files();
+                // $new_file->file = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
 
-        $new_doc->document = $path_name;
+                $new_file->file = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
 
+                $new_file->document_id = $new_doc->id;
+                $new_file->status = $request->status;
+                $new_file->created_by = Auth::id();
+                $new_file->save();
+            }
+            return $new_file->file;
 
+            $sss = [];
+            if (is_array($request->users)) {
+                foreach ($request->users as $key => $value) {
+                    $sss['val'] = $value;
+                    $sss['key'] = $key;
+                }
+            }
 
-        $new_doc->name = $request->name;
-        $new_doc->name = $request->name;
+            return $sss;
+        }
 
-
-        $dateee = date('Y-m-d', strtotime($request->sanasi));
 
         return $request;
     }
