@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Mk;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mk\Attached;
+use App\Models\Mk\AttachPart;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Facade\FlareClient\Stacktrace\File;
@@ -12,8 +14,11 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\Mk\Doc;
 use App\Models\Mk\Files;
+use Dompdf\Adapter\PDFLib;
 use League\CommonMark\Block\Element\Document;
 
+
+use PDF;
 // use App\Models\Mk\Files;
 
 
@@ -43,7 +48,7 @@ class DocController extends Controller
 
     public function create()
     {
-        $users = User::all();
+        $users = User::where(['status' => 1])->get();
 
         $data = 'sssss';
 
@@ -69,12 +74,13 @@ class DocController extends Controller
             'document'             => 'required|mimes:pdf|max:5000',
         ]);
 
-        /*       if ($validator->fails()) {
+        // return $request;
+
+        // return $request->user;
+        if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('validate', 'a');
         }
 
-        */
-        // return $request->file('document');
         $new_doc = new Doc();
 
         $new_doc->status = $request->status;
@@ -85,16 +91,22 @@ class DocController extends Controller
 
         $new_doc->end_date = $request->end_date;
         $new_doc->word_all = $request->word_all;
-        $new_doc->users = $request->users;
+        $new_doc->users = json_encode($request->users);
         $new_doc->created_by = Auth::id();
+        if ($request->user_all == 'on') {
+            $new_doc->user_all = 1;
+        } else {
+            $new_doc->user_all = 0;
+        }
 
         // if ($request->file('document')) {
         //     $new_doc->document = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
         // }
 
         if ($request->hasFile('document')) {
-            $fileName = time() . '.' . $request->document->extension();
+            $fileName = base64_encode(time() . $request->name) . '_' . time() . '.' . $request->document->extension();
             $request->document->move(public_path('doc/document'), $fileName);
+            $new_doc->document = 'doc/document/' . $fileName;
         }
 
         // if (is_array($request->users)) {
@@ -102,41 +114,135 @@ class DocController extends Controller
         //     }
         // }
 
-        $end_date = date('Y-m-d', strtotime($request->end_date));
+        // $end_date = date('Y-m-d', strtotime($request->end_date));
 
         if ($new_doc->save()) {
-            if ($request->file('document')) {
-                $new_file = new Files();
-                // $new_file->file = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
+            // if ($request->file('document')) {
+            //     $new_file = new Files();
+            //     $new_file->file = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
+            //     $new_file->document_id = $new_doc->id;
+            //     $new_file->status = $request->status;
+            //     $new_file->created_by = Auth::id();
+            //     $new_file->save();
+            // }
+            // return $new_file->file;
 
-                $new_file->file = 'data:application/pdf;base64,' . base64_encode(file_get_contents($request->file('document')));
-
-                $new_file->document_id = $new_doc->id;
-                $new_file->status = $request->status;
-                $new_file->created_by = Auth::id();
-                $new_file->save();
-            }
-            return $new_file->file;
-
-            $sss = [];
+            // $sss = [];
             if (is_array($request->users)) {
                 foreach ($request->users as $key => $value) {
-                    $sss['val'] = $value;
-                    $sss['key'] = $key;
+                    // $sss['val'][] = $value;
+                    // $sss['key'][] = $key;
+                    $new_attached = new Attached();
+                    $new_attached->document_id = $new_doc->id;
+                    $new_attached->user_id = $value;
+                    $new_attached->end_date = $request->end_date;
+                    $new_attached->status = $request->status;
+                    $new_attached->created_by = Auth::id();
+                    $new_attached->save();
+                }
+            }
+            if (is_array($request->users) && is_array($request->user)) {
+
+                $rrrr = array_diff($request->users, $request->user);
+
+                if (is_array($rrrr)) {
+                    foreach ($rrrr as $key => $value) {
+                        // $sss['val'][] = $value;
+                        // $sss['key'][] = $key;
+                        $new_attach_part = new AttachPart();
+
+                        $new_attach_part->user_id = $value;
+                        $new_attach_part->document_id = $new_doc->id;
+                        $new_attach_part->end_date = $request->end_date;
+                        $new_attach_part->with_file = 0;
+                        $new_attach_part->status = $request->status;
+                        $new_attach_part->created_by = Auth::id();
+                        $new_attach_part->save();
+                    }
                 }
             }
 
-            return $sss;
+            // return $sss;
+
+
+            if (is_array($request->user)) {
+                foreach ($request->user as $key => $user_id) {
+                    $new_attach_part = new AttachPart();
+                    $new_attach_part->user_id = $user_id;
+                    $new_attach_part->with_file = 1;
+                    $new_attach_part->document_id = $new_doc->id;
+                    $new_attach_part->word = $request->word[$key];
+                    if ($request->sana[$key] != null) {
+                        $new_attach_part->end_date = date('Y-m-d', strtotime($request->sana[$key]));
+                    } else {
+                        $new_attach_part->end_date = date('Y-m-d', strtotime($request->end_date));
+                    }
+                    $new_attach_part->status = $request->status;
+                    $new_attach_part->created_by = Auth::id();
+
+                    if ($new_attach_part->word) {
+                        $pdf = PDF::loadHTML($new_attach_part->word);
+                        $fileName = $user_id . '_' . $new_doc->id . '_' .  $new_attach_part->end_date . '_' . time() . '.pdf';
+                        $new_attach_part->document = 'doc/sub_document/' . $fileName;
+                        $pdf->save('doc/sub_document/' . $fileName);
+                    }
+
+                    $new_attach_part->save();
+                    // return $pdf->download('invoice.pdf');
+                }
+            }
+
+            if ($new_doc->user_all == 1) {
+                $users = User::select('id')->get();
+
+
+
+                foreach ($users as $key => $user) {
+                    $is_aldeady_recorded = AttachPart::where(['document_id' => $new_doc->id])
+                        ->where(['user_id' => $user->id])
+                        ->where(['with_file' => 1])
+                        ->where(['status' => $request->status])
+                        ->first();
+
+                    if (!$is_aldeady_recorded) {
+
+                        $new_attach_part = new AttachPart();
+                        $new_attach_part->user_id = $user->id;
+                        $new_attach_part->document_id = $new_doc->id;
+                        $new_attach_part->end_date = $request->end_date;
+                        $new_attach_part->with_file = 0;
+                        $new_attach_part->status = $request->status;
+                        $new_attach_part->created_by = Auth::id();
+                        $new_attach_part->save();
+                    }
+                }
+            }
+            // return $sss;
         }
-
-
-        return $request;
+        return redirect()->route('doc.show', $new_doc->id)->with('success', 'Xodim qo`shildi');
+        // return $request;
     }
 
 
     public function show(Doc $doc)
     {
-        //
+        // return $doc->document;
+        // $dd = Doc::find('id', $doc);
+
+        // return $dd;
+
+        $attached_with = AttachPart::where(['document_id' => $doc->id])
+            ->where(['with_file' => 1])->get();
+
+        $attached_without = AttachPart::where(['document_id' => $doc->id])
+            ->where(['with_file' => 0])->get();
+
+        return view("mk.pages.doc.show", [
+            'data' => $doc,
+            'attached_with' => $attached_with,
+            'attached_without' => $attached_without,
+            'status' => 1,
+        ]);
     }
 
 

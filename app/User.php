@@ -36,4 +36,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getfio()
+    {
+        $now_user = User::find($this->id);
+        if ($now_user->last_name) {
+            $fio = $now_user->last_name . $now_user->first_name;
+        } else {
+            $fio = $now_user->username;
+        }
+
+        return $fio;
+    }
 }

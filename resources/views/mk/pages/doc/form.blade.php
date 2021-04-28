@@ -64,7 +64,7 @@
                 <select name="users[]" class="selectpicker form-control" data-size="5" data-style="btn-outline-success" multiple data-actions-box="true" data-selected-text-format="count">
                     <optgroup label="Xodimlar tanlang">
                         @foreach ($users as $user)
-                            <option value="{{$user->id}}">{{$user->name}}</option>
+                            <option value="{{$user->id}}">{{$user->getfio()}}0</option>
                         @endforeach
                     </optgroup>
                 </select>
@@ -74,7 +74,7 @@
             <div class="form-group">
                 <label>Barcha uchun</label>
                 <div class="custom-control custom-checkbox mb-5">
-                    <input type="checkbox" class="custom-control-input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Barcha uchun tanlasangiz xodimlarni belgilamang" id="customCheck2">
+                    <input type="checkbox" name="user_all" class="custom-control-input" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Barcha uchun tanlasangiz xodimlarni belgilamang" id="customCheck2">
                     <label class="custom-control-label" name="user_all" for="customCheck2" ></label>
                 </div>
             </div>
@@ -189,13 +189,13 @@ var max = 5;
             
             // Adding element to <div>
             // $("#div_" + nextindex).append("<input type='text' placeholder='Enter your skill' id='txt_"+ nextindex +"'>&nbsp;<span id='remove_" + nextindex + "' class='remove'>X</span>");
-            $("#div_" + nextindex).append(" <div class='col-md-3'> <div class='form-group'> <label > Muddati :</label> <input class='form-control date-picker' id='mk_date-picker_" + nextindex + "' name='sana[]' placeholder='Tanlanmasa asosiy olinadi' type='text'> </div>  </div> <div class='col-md-3'> <div class='form-group'> <label>Xodimlarni tanlang</label> <select id='mk_select_" + nextindex + "' name='user[]' class='custom-select2 form-control' style='width: 100%;'>  @foreach ($users as $user) <option value='{{$user->id}}'>{{$user->name}}</option> @endforeach </select> </div> </div> <div class='col-md-3 mt-auto'> <div class='form-group'> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> O\'chirish </span></div> </div> <div class='col-md-12 col-sm-12'> <div class='html-editor pd-20 card-box mb-30'> <p>Hujjat matnini kiriting</p> <textarea class='textarea_editor form-control border-radius-0' id='mk_text_area_editor_" + nextindex + "' name='word[]' placeholder='Bo`lim matnini kiriting ...'></textarea> </div> </div>");
+            $("#div_" + nextindex).append(" <div class='col-md-3'> <div class='form-group'> <label > Muddati :</label> <input class='form-control date-picker' id='mk_date-picker_" + nextindex + "' name='sana[]' placeholder='Tanlanmasa asosiy olinadi' type='text'> </div>  </div> <div class='col-md-3'> <div class='form-group'> <label>Xodimlarni tanlang</label> <select id='mk_select_" + nextindex + "' name='user[]' class='custom-select2 form-control' style='width: 100%;'>  @foreach ($users as $user) <option value='{{$user->id}}'>{{$user->getfio()}}</option> @endforeach </select> </div> </div> <div class='col-md-3 mt-auto'> <div class='form-group'> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> O\'chirish </span></div> </div> <div class='col-md-12 col-sm-12'> <div class='html-editor pd-20 card-box mb-30'> <p>Hujjat matnini kiriting</p> <textarea class='textarea_editor form-control border-radius-0' id='mk_text_area_editor_" + nextindex + "' name='word[]' placeholder='Bo`lim matnini kiriting ...'></textarea> </div> </div>");
         // <div class="col-md-3 mt-auto"> <div class="form-group"> <span id='remove_" + nextindex + "' class='remove btn btn-outline-danger w-100'> <i class='icon-copy fa fa-trash-o' aria-hidden='true'></i> Remove </span></div> </div>
         // }
 
-         $("#mk_text_area_editor_"+nextindex).wysihtml5({html:!0})
-         $("#mk_date-picker_"+nextindex).datepicker({language:"en",autoClose:!0,dateFormat:"dd MM yyyy"})
-          $("#mk_select_"+nextindex).tagsinput();
+        $("#mk_text_area_editor_"+nextindex).wysihtml5({html:!0})
+        $("#mk_date-picker_"+nextindex).datepicker({language:"en",autoClose:!0,dateFormat:"dd MM yyyy"})
+        $("#mk_select_"+nextindex).tagsinput();
     
     });
 

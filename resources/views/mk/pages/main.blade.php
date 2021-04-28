@@ -20,7 +20,7 @@
                     </div>
                    <div class="col-md-6 col-sm-12 text-right">
                            <a class="btn btn-primary " href="{{route('doc.create')}}" role="button" >
-                                Yangi hijjat kiritish
+                                Yangi hujjat kiritish
                            </a>
                    </div>
                 </div>
