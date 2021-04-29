@@ -237,8 +237,14 @@ class DocController extends Controller
         $attached_without = AttachPart::where(['document_id' => $doc->id])
             ->where(['with_file' => 0])->get();
 
+        $attached = AttachPart::where(['document_id' => $doc->id])
+            ->orderBy('end_date')
+            // ->orderBy('user_id', 'desc')
+            ->get();
+
         return view("mk.pages.doc.show", [
             'data' => $doc,
+            'attached' => $attached,
             'attached_with' => $attached_with,
             'attached_without' => $attached_without,
             'status' => 1,

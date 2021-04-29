@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
                     <div class="title">
-                        <h4><?php echo e($data->end_date); ?></h4>
+                        <h4>Muddati <?php echo e($data->end_date); ?> gacha</h4>
                     </div>
                 </div>
 
@@ -33,9 +33,8 @@
             <div class="clearfix row mb-2">
                 <div class="col-md-6">
                     <div class="pull-left">
-                        <?php $__currentLoopData = $attached_without; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $without): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            
-                        <h4 class="text-blue h4"><?php echo e($without->userget); ?></h4>
+                        <?php $__currentLoopData = $attached; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attached_one): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <h4 class="text-blue h4"><?php echo e($attached_one->getuserfio()); ?> <?php echo e($attached_one->end_date); ?> </h4>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>

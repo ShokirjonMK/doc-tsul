@@ -2,6 +2,7 @@
 
 namespace App\Models\Mk;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class AttachPart extends Model
@@ -19,14 +20,24 @@ class AttachPart extends Model
         'status'
     ];
 
-    // public function language()
-    // {
-    //     return $this->belongsTo('App\Models\Lang');
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class,  $this->user_id, 'id');
+    }
 
     public function userget()
     {
-        return $this->hasOne('App\User', 'foreign_key', $this->user_id);
-        // return $this->hasOne('App\User')->where('id', '=', );
+        return $this->hasOne('App\User', 'id', $this->user_id);
+    }
+
+    public function getuserfio()
+    {
+        $user = User::find($this->user_id);
+        if ($user->last_name) {
+            $fio = $user->last_name . $user->first_name;
+        } else {
+            $fio = $user->username;
+        }
+        return $fio;
     }
 }

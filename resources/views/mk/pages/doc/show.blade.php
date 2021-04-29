@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
                     <div class="title">
-                        <h4>{{$data->end_date}}</h4>
+                        <h4>Muddati {{$data->end_date}} gacha</h4>
                     </div>
                 </div>
 
@@ -32,9 +32,8 @@
             <div class="clearfix row mb-2">
                 <div class="col-md-6">
                     <div class="pull-left">
-                        @foreach ($attached_without as $without)
-                            
-                        <h4 class="text-blue h4">{{$without->userget}}</h4>
+                        @foreach ($attached as $attached_one)
+                            <h4 class="text-blue h4">{{$attached_one->getuserfio()}} {{$attached_one->end_date}} </h4>
                         @endforeach
                     </div>
                 </div>
