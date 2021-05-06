@@ -30,7 +30,7 @@
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
                             <input type="text" class="knob dial1" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
-                            <h5 class="text-blue padding-top-10 h5">Jami xodimlar</h5>
+                            <h5 class="text-blue padding-top-10 h5">Yangi hujjatlar</h5>
                             <span class="d-block"> 500  <i class="fa fa-line-chart text-blue"></i></span>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
                             <input type="text" class="knob dial2" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly>
-                            <h5 class="text-light-green padding-top-10 h5">O'qituvchilar</h5>
+                            <h5 class="text-light-green padding-top-10 h5">Yakunlangan</h5>
                             <span class="d-block"> 300 <i class="fa text-light-green fa-line-chart"></i></span>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
                             <input type="text" class="knob dial3" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly>
-                            <h5 class="text-light-orange padding-top-10 h5">Bo'sh ish o'rinlari</h5>
+                            <h5 class="text-light-orange padding-top-10 h5">Faol hujjatlar</h5>
                             <span class="d-block"> 200 <i class="fa text-light-orange fa-line-chart"></i></span>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
                             <input type="text" class="knob dial4" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#a683eb" data-angleOffset="180" readonly>
-                            <h5 class="text-light-purple padding-top-10 h5"> O'rindoshlar ( ichki | tashqi ) </h5>
+                            <h5 class="text-light-purple padding-top-10 h5"> Bajarilganlar </h5>
                             <span class="d-block"> 200 | 211 <i class="fa text-light-purple fa-line-chart"></i></span>
                         </div>
                     </div>
@@ -66,53 +66,9 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 pt-10 height-100-p">
-                        <h2 class="mb-30 h4">Daraja va unvonlar statistikasi</h2>
+                        <h2 class="mb-30 h4">Hujjat turlari</h2>
                         <div class="browser-visits">
-                            <ul>
-                                <li class="d-flex flex-wrap align-items-center">
-                                    <div class="icon">
-                                        <i  style="color: #1b00ff;" class="icon-copy fa fa-id-badge" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="browser-name">Professorlar | Dotsentlar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-primary">12 | 20</span></div>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center">
-                                    <div class="icon">
-                                        <i style="color: #1b00ff;" class="icon-copy fa fa-user-circle-o" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="browser-name">Fan nomzod | doktorlari soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-secondary">14 | 25</span></div>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center">
-                                    <div class="icon">
-                                        <i style="color: #1b00ff;" class="icon-copy fa fa-star-half-empty" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="browser-name">Darajasizlar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-success">26 | 32</span></div>
-                                </li>
-                                <hr>
-                                <li class="d-flex flex-wrap align-items-center">
-                                    <div class="icon">
-                                        <i style="color: #1b00ff;" class="icon-copy fa fa-dot-circle-o" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="browser-name">Davlat adliya maslahatchisi</div>
-                                    <div class="visit"><span class="badge badge-pill badge-warning">13</span></div>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center">
-                                    <div class="icon">
-                                        <i style="color: #1b00ff;" class="icon-copy ion-ionic"></i>
-                                    </div>
-                                    <div class="browser-name">Unvonlilar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-info">32</span></div>
-                                </li>
-                                <li class="d-flex flex-wrap align-items-center">
-                                    <div class="icon">
-                                        <i style="color: #1b00ff;" class="icon-copy ion-ionic"></i>
-                                    </div>
-                                    <div class="browser-name">Unvonsizlar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-info">21</span></div>
-                                </li>
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>

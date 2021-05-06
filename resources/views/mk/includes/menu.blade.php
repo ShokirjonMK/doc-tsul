@@ -9,7 +9,7 @@
 			{{-- <li>
 				<a href="{{ route('structure.strc')}} " class="@if( ( Request::is('backoffice/strc') ) || Request::is('backoffice/structure') ) ) active @endif">Struktura</a>
 			</li> --}}
-			<li>
+			{{-- <li>
 				<a href="{{ route('department.index')}}" class="@if( ( Request::is('backoffice/department') ) || ( Request::is('backoffice/department/*') )|| ( Request::is('backoffice/stdep/*') ) ) active @endif active">Tashkiliy tuzilma</a>
 			</li>
 			<li>
@@ -17,7 +17,7 @@
 			</li>
 			<li>
 				<a href="{{ route('university.index')}}" class="@if( ( ( Request::is('backoffice/university') ) || Request::is('backoffice/university/*') ) ) active @endif active">Ta'lim muassasalari</a>
-			</li>
+			</li> --}}
 		</ul>
 	</li>
 @endif

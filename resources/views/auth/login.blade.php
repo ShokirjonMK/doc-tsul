@@ -35,7 +35,7 @@
     </script>
 </head>
 <body class="login-page">
-    <div class="login-header box-shadow">
+    {{-- <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
                 <a href="login.html">
@@ -48,7 +48,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
@@ -79,7 +79,7 @@
                                 </div>
                             </div> -->
                             <div class="input-group custom">
-                                <input id="username" type="username" class="form-control form-control-lg @error('username') is-invalid @enderror" placeholder="Username" name="username" value="{{ old('username') }}" required  autofocus>
+                                <input id="username" type="username" class="form-control form-control-lg @error('username') is-invalid @enderror" placeholder="Foydalanuvchi nomi" name="username" value="{{ old('username') }}" required  autofocus>
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -108,14 +108,14 @@
                                          {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class=" custom-control-label" for="customCheck1">
-                                        {{ __('Remember Me') }}
+                                        Eslab qolish
                                     </label>
                                         <!-- <input type="checkbox" class="custom-control-input" id="customCheck1">
                                         <label class="custom-control-label" for="customCheck1">Remember</label> -->
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="forgot-password"><a href="#">Forgot Password</a></div>
+                                    <div class="forgot-password"><a href="#">Parolni tiklash</a></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -125,7 +125,7 @@
                                             use code for form submit
                                             <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
                                         -->
-                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Kirish</button>
                                     </div>
                                   {{--   <div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
                                     <div class="input-group mb-0">

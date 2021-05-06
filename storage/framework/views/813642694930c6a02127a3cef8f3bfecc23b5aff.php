@@ -35,20 +35,7 @@
     </script>
 </head>
 <body class="login-page">
-    <div class="login-header box-shadow">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <div class="brand-logo">
-                <a href="login.html">
-                   TSUL 
-                </a>
-            </div>
-            <div class="login-menu">
-                <ul>
-                    <li><a href="register.html">Register</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    
     <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
         <div class="container">
             <div class="row align-items-center">
@@ -86,7 +73,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="Username" name="username" value="<?php echo e(old('username')); ?>" required  autofocus>
+unset($__errorArgs, $__bag); ?>" placeholder="Foydalanuvchi nomi" name="username" value="<?php echo e(old('username')); ?>" required  autofocus>
                                 <?php $__errorArgs = ['username'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -136,15 +123,14 @@ unset($__errorArgs, $__bag); ?>
                                          <?php echo e(old('remember') ? 'checked' : ''); ?>>
 
                                     <label class=" custom-control-label" for="customCheck1">
-                                        <?php echo e(__('Remember Me')); ?>
-
+                                        Eslab qolish
                                     </label>
                                         <!-- <input type="checkbox" class="custom-control-input" id="customCheck1">
                                         <label class="custom-control-label" for="customCheck1">Remember</label> -->
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="forgot-password"><a href="#">Forgot Password</a></div>
+                                    <div class="forgot-password"><a href="#">Parolni tiklash</a></div>
                                 </div>
                             </div>
                             <div class="row">
@@ -154,7 +140,7 @@ unset($__errorArgs, $__bag); ?>
                                             use code for form submit
                                             <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
                                         -->
-                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Kirish</button>
                                     </div>
                                   
                                 </div>
