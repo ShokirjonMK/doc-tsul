@@ -49,7 +49,12 @@
                     <div class="clearfix row mb-2">
                         <div class="col-md-12">
                             @foreach ($attached as $attached_one)
-                                 {{$attached_one->getuserfio()}} {{$attached_one->end_date}} 
+                            <h4 class="text-blue h4" >
+                                {{$attached_one->getuserfio()}} {{$attached_one->end_date}} 
+                                @if ($attached_one->with_file == 1)
+                                <i onclick="return open('{{asset($attached_one->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 pointer"></i>
+                                @endif
+                            </h4>
                             @endforeach
                         </div>
                     </div>
@@ -57,9 +62,7 @@
             </div>
 
         </div>
-
-        
-                @foreach ($attached as $attached_one)
+                @foreach ($attached_with as $attached_one)
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix row mb-2">
                         <div class="col-md-6">

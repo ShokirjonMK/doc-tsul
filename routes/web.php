@@ -92,8 +92,9 @@ Route::group([
 ], function () {
 
     Route::get('/', 'AdminController@index')->name('mk');
+    Route::get('/user', 'AdminController@userindex')->name('mk.user.index');
+    Route::get('/usercreate', 'AdminController@usercreate')->name('mk.user.create');
+    Route::get('/user/{id}', 'AdminController@usershow')->name('mk.user.show');
+    Route::post('/userstore', 'AdminController@userstore')->name('mk.user.store');
     Route::resource('doc', 'DocController');
-
-    // Route::get('/', 'DocController@index')->name('doc');
-    // Route::get('/new', 'DocController@new')->name('doc.new');
 });

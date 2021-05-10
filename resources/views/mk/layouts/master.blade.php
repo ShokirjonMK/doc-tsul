@@ -117,14 +117,6 @@
 	<script src="{{asset('assets/admin/src/plugins/datatables/js/dataTables.responsive.min.js')}}"></script>
 	<script src="{{asset('assets/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js')}}"></script>
 	<!-- buttons for Export datatable -->
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/dataTables.buttons.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.print.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.html5.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.flash.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
-
 
 	<script src="{{ asset('assets/admin/src/plugins/jquery-steps/jquery.steps.js') }}"></script>
 	<script src="{{ asset('assets/admin/vendors/scripts/steps-setting.js') }}"></script>
@@ -140,8 +132,7 @@
 	<script src="{{ asset('assets/admin/vendors/scripts/dashboard2.js') }}"></script>
 	<!-- Datatable Setting js -->
 	<script src="{{ asset('assets/admin/vendors/scripts/datatable-setting.js') }}"></script>
-
-		<script src="{{asset('assets/admin/src/plugins/sweetalert2/sweetalert2.all.js')}}"></script>
+	<script src="{{asset('assets/admin/src/plugins/sweetalert2/sweetalert2.all.js')}}"></script>
 	<script src="{{asset('assets/admin/src/plugins/sweetalert2/sweet-alert.init.js')}}"></script>
 
 	<script src="{{ asset('inputmask/min/jquery.inputmask.bundle.min.js') }}"></script>
@@ -169,7 +160,6 @@
 		$( document ).ready(function() {
             swal(
                 {
-
                     type: 'success',
                     title: 'Muvaffaqiyatli!',
                     showConfirmButton: false,
@@ -179,7 +169,6 @@
         });
 	</script>
 	@endif
-
 	@if (session('error'))
 		<script type="text/javascript">
 		 // $('#sa-test').click(function () {
@@ -194,7 +183,6 @@
         });
 	</script>
 	@endif
-
 	@if (session('validate'))
 		<script type="text/javascript">
 		 // $('#sa-test').click(function () {
@@ -209,7 +197,6 @@
         });
 	</script>
 	@endif
-
 	@yield('js')
 </body>
 </html>

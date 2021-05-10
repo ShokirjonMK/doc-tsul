@@ -19,9 +19,42 @@ class Doc extends Model
         'status'
     ];
 
-    // public function language()
+    // public function getStatus()
     // {
-    //     return $this->belongsTo('App\Models\Lang');
+
+    //     // return date("Y-m-d", strtotime("+1 day"));
+    //     $doc = Doc::find($this->id)->first();
+    //     if ($doc->status == 0) {
+    //         return 'Nofaol';
+    //     }
+    //     if ($doc->status == 1) {
+    //         return 'Faol';
+    //     }
+    // }
+
+
+    // public function getHolati()
+    // {
+
+    //     // return date("Y-m-d", strtotime("+1 day"));
+    //     $doc = Doc::find($this->id)->first();
+    //     // return $doc->end_date;
+
+
+    //     if ($doc->status == 0) {
+    //         return 'table-secondary';
+    //     }
+    //     if ($doc->end_date == date("Y-m-d")) {
+    //         return 'table-danger';
+    //     }
+
+    //     if ($doc->end_date == date("Y-m-d", strtotime("+1 day"))) {
+    //         return 'table-warning';
+    //     }
+    //     if ($doc->end_date > date("Y-m-d")) {
+    //         return 'table-info';
+    //     }
+    //     return $doc;
     // }
 
     // public function stdep()

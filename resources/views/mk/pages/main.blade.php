@@ -19,6 +19,10 @@
                         </nav>
                     </div>
                    <div class="col-md-6 col-sm-12 text-right">
+                           <a class="p-2 m-2" href="{{route('doc.index')}}" >
+                                <i class="icon-copy dw dw-list" style="font-size: 20px"></i>
+                              
+                           </a>
                            <a class="btn btn-primary " href="{{route('doc.create')}}" role="button" >
                                 Yangi hujjat kiritish
                            </a>

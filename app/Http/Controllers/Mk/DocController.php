@@ -27,7 +27,13 @@ class DocController extends Controller
 
     public function index()
     {
-        return view('mk.pages.main');
+        $users = User::all();
+
+        $data = Doc::orderBy('end_date', 'DESC')->get();
+
+        return view('mk.pages.doc.index', [
+            'data' => $data,
+        ]);
     }
 
 
@@ -225,7 +231,7 @@ class DocController extends Controller
             }
             // return $sss;
         }
-        return redirect()->route('doc.show', $new_doc->id)->with('success', 'Xodim qo`shildi');
+        return redirect()->route('doc.show', $new_doc->id)->with('success', 'aa');
         // return $request;
     }
 

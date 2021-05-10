@@ -169,6 +169,9 @@ sup {
   top: -0.5em;
 }
 
+a{
+  color: #3490dc  !important;
+}
 a {
   color: #3490dc;
   text-decoration: none;

@@ -41,11 +41,16 @@ class User extends Authenticatable
     {
         $now_user = User::find($this->id);
         if ($now_user->last_name) {
-            $fio = $now_user->last_name . $now_user->first_name;
+            $fio = $now_user->last_name . " " . $now_user->first_name;
         } else {
             $fio = $now_user->username;
         }
 
         return $fio;
+    }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Mk\Department');
     }
 }

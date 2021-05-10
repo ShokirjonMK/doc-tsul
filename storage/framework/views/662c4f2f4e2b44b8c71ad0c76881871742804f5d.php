@@ -51,7 +51,12 @@
                     <div class="clearfix row mb-2">
                         <div class="col-md-12">
                             <?php $__currentLoopData = $attached; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attached_one): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                 <?php echo e($attached_one->getuserfio()); ?> <?php echo e($attached_one->end_date); ?> 
+                            <h4 class="text-blue h4" >
+                                <?php echo e($attached_one->getuserfio()); ?> <?php echo e($attached_one->end_date); ?> 
+                                <?php if($attached_one->with_file == 1): ?>
+                                <i onclick="return open('<?php echo e(asset($attached_one->document)); ?>', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 pointer"></i>
+                                <?php endif; ?>
+                            </h4>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
@@ -59,9 +64,7 @@
             </div>
 
         </div>
-
-        
-                <?php $__currentLoopData = $attached; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attached_one): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $attached_with; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attached_one): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix row mb-2">
                         <div class="col-md-6">
