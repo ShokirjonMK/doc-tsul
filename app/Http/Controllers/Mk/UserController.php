@@ -10,10 +10,11 @@ use App\User;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     public function __construct()
     {
@@ -22,16 +23,12 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('mk.pages.main');
-    }
-    public function userindex()
-    {
         $user = User::where('role', 555)->get();
         return view('mk.pages.user.index', [
             'data' => $user
         ]);
     }
-    public function usershow($id)
+    public function show($id)
     {
         $user = User::where('id', $id)->first();
         // return $user;
@@ -42,7 +39,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function usercreate()
+    public function create()
     {
         // $date = date("Y-m-d");
         $Department = Department::where('status', 1)->get();
@@ -54,7 +51,7 @@ class AdminController extends Controller
     }
 
     // userstore 
-    public function userstore(Request $request)
+    public function store(Request $request)
     {
         $input = $request->all();
         // return $request;
@@ -82,6 +79,7 @@ class AdminController extends Controller
         $new_user->middle_name = $request->middle_name;
         $new_user->department_id = $request->department;
         $new_user->position = $request->position;
+        $new_user->phone = $request->phone;
 
 
         $password = $this->randomPassword_alpha(4) . $this->randomPassword_number(4);
@@ -109,10 +107,10 @@ class AdminController extends Controller
         $pass->password = $password;
         $pass->save();
 
-        return redirect()->route('mk.user.index')->with('success', 'Xodim qo`shildi');
+        return redirect()->route('user.index')->with('success', 'Xodim qo`shildi');
     }
 
-    public function useredit($id)
+    public function edit($id)
     {
         $user = User::where('id', $id)->first();
         // return $user;
@@ -124,9 +122,38 @@ class AdminController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
     {
-        //
+        // return $request;
+
+        $userrrr = User::find($user);
+
+        $userrrr->last_name = $request->last_name;
+        $userrrr->first_name = $request->first_name;
+        $userrrr->middle_name = $request->middle_name;
+        $userrrr->phone = $request->phone;
+
+        $userrrr->department_id = $request->department;
+        $userrrr->position = $request->position;
+        $userrrr->username = $request->username;
+        if ($request->password) {
+            $userrrr->password = Hash::make($request->password);
+        }
+
+        $userrrr->updated_by = Auth::user()->id;
+        if ($userrrr->update()) {
+            $pass = Pass::where('user_id', $userrrr->id)->first();
+
+            $pass->user_id = $userrrr->id;
+            $pass->username = $userrrr->username;
+            if ($request->password) {
+                $pass->password = $request->password;
+            }
+            $pass->updated_by = Auth::user()->id;
+            $pass->update();
+            return redirect()->route('user.index')->with('success', 'Ma`lumot o`zgartirildi');
+        }
+        return $user;
     }
 
 

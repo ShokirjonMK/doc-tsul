@@ -35,6 +35,49 @@ class DocController extends Controller
             'data' => $data,
         ]);
     }
+    public function mydoc()
+    {
+        $users = User::all();
+
+        $data = AttachPart::where('user_id', Auth::id())->orderBy('end_date', 'DESC')->get();
+
+
+        return view('mk.pages.doc.mydoc', [
+            'data' => $data,
+        ]);
+    }
+    public function myshow($id)
+    {
+        // return $doc->document;
+        $doc = Doc::find($id);
+
+        $attached = AttachPart::where(['document_id' => $id])
+            ->where('user_id', Auth::id())
+            // ->where(['with_file' => 1])
+            ->first();
+
+        // $attached_without = AttachPart::where(['document_id' => $id])
+        //     ->where(['with_file' => 0])->get();
+
+        // $attached = AttachPart::where(['document_id' => $id])
+        //     ->where('user_id', Auth::id())
+        //     ->orderBy('end_date')
+        //     // ->orderBy('user_id', 'desc')
+        //     ->get();
+        if ($attached) {
+
+
+            return view("mk.pages.doc.myshow", [
+                'data' => $doc,
+                // 'attached_with' => $attached_with,
+                'attached' => $attached,
+                // 'attached_without' => $attached_without,
+                'status' => 1,
+            ]);
+        } else {
+            return redirect()->route('mk.doc.mydoc')->with('validate', 'a');
+        }
+    }
 
 
     public function new()

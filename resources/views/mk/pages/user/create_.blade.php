@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="pd-20 card-box mb-30">
-                   <form action="{{ route('mk.user.store') }}"  method="post" enctype="multipart/form-data">
+                   <form action="{{ route('user.store') }}"  method="post" enctype="multipart/form-data">
 							@csrf
 							{{-- <h5>Asosiy ma`lumotlar</h5> --}}
 							{{-- <section> --}}

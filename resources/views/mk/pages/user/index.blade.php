@@ -19,7 +19,7 @@
                         </nav>
                     </div>
                    <div class="col-md-6 col-sm-12 text-right">
-						<a class="btn btn-primary " href="{{route('mk.user.create')}}" role="button" >
+						<a class="btn btn-primary " href="{{route('user.create')}}" role="button" >
 							Yangi foydalanuvchi kiritish
 						</a>
                    </div>
@@ -33,7 +33,7 @@
 						<h4 class="text-blue h4">Data Table with Export Buttons</h4>
 					</div>
 					<div class="pb-20">
-						<table class="table hover multiple-select-row data-table-export nowrap">
+						<table class="table hover data-table-export nowrap">
 							<thead>
 								<tr>
 									<th class="table-plus datatable-nosort">#</th>
@@ -51,11 +51,9 @@
 							@if ($item->status == 0)
 								@php $item->statusclass = 'table-secondary'@endphp
 							@endif
-							
-								
 								<tr class="{{$item->statusclass}}">
 									<td>{{$i++}}</td>
-									<td><a href="{{route('mk.user.show', ['id'=>$item->id])}}">{{$item->getfio()}}</a></td>
+									<td><a href="{{route('user.show', $item->id)}}">{{$item->getfio()}}</a></td>
 									<td>
 									{{ \Illuminate\Support\Str::limit($item->department->name, 50, $end='...') }}
 									</td>
@@ -65,17 +63,10 @@
 										@elseif ($item->status == 0)
 										{{"Nofaol"}}
 									@endif</td>
-									<td class="last-td">
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a href="#" class="dropdown-item" ><i class="dw dw-eye"></i> Ko'rish </a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Tahrirlash</a>
-												<a class="dropdown-item"  href="#"><i class="dw dw-delete-3"></i> O'chirish</a>
-											</div>
-										</div>
+									<td>
+										<a class="p-1" href="{{route('user.show',$item->id)}}"><i class="dw dw-eye"></i></a>
+										<a class="p-1" href="{{route('user.edit', $item->id)}}" ><i class="dw dw-edit2"></i></a>
+										<a class="p-1" href="#"><i class="dw dw-delete-3"></i> </a>
 									</td>
 								</tr>
 							@endforeach

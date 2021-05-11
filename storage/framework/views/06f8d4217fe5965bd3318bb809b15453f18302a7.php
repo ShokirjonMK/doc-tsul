@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="pd-20 card-box mb-30">
-                   <form action="<?php echo e(route('mk.user.store')); ?>"  method="post" enctype="multipart/form-data">
+                   <form action="<?php echo e(route('user.store')); ?>"  method="post" enctype="multipart/form-data">
 							<?php echo csrf_field(); ?>
 							
 							

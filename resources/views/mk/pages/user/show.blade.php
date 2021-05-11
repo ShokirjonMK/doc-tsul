@@ -1,6 +1,6 @@
 @extends('mk.layouts.master')
 @section('title')
-
+{{$data->getfio()}} 
 @endsection
 @section('link')
 @endsection
@@ -12,15 +12,16 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
                         <h4>
-                           Foydalanuvchi qo'shish
+                           Foydalanuvchi ko'rish <a class="ml-2 p-1" href="{{route('user.edit',$data->id)}}" ><i class="dw dw-edit2"></i></a>
                             {{-- <i onclick="return open('{{asset($data->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i> --}}
                         </h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('mk')}}">Bosh</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('user.index')}}">Foydalanuvchilar</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
-                             asd asd asdf sf 
+                            {{$data->getfio()}} 
                             </li>
                         </ol>
                     </nav>
@@ -110,6 +111,27 @@
 									<input readonly type="text" class="form-control" name="position" value="{{ $data->position}}">
 								</div>
 							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Username :
+										<span class="error">
+											@error('username')
+											{{ $message }}
+											@enderror
+										</span>
+									</label>
+									<input readonly type="text" class="form-control" name="username" value="{{ $data->username}}">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label id="showpass">Parol : <i style="font-size: 18px" class="dw dw-eye ml-3"></i>
+										
+									</label>
+									<input id="mkpassinput" readonly  type="text" class="form-control" name="username" value="{{$data->getPass()}}">
+								</div>
+							</div>
+
 						</div>
                 </div>
             </div>
@@ -124,13 +146,11 @@
 
 @section('js')
 <script>
-
-    // window.open('https://javascript.info');
-
-
-// button.onclick = () => {
-//   window.open('https://javascript.info');
-// };
+$("#mkpassinput").hide();
+$( "#showpass" ).click(function() {
+	
+  $("#mkpassinput").show();
+});
 
 </script>
 

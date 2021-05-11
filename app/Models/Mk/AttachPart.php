@@ -3,7 +3,9 @@
 namespace App\Models\Mk;
 
 use App\User;
+use App\Models\Mk\Doc;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\This;
 
 class AttachPart extends Model
 {
@@ -28,6 +30,10 @@ class AttachPart extends Model
     public function userget()
     {
         return $this->hasOne('App\User', 'id', $this->user_id);
+    }
+    public function doc()
+    {
+        return $this->belongsTo(Doc::class, 'document_id');
     }
 
     public function getuserfio()

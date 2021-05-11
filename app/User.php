@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Mk\Pass;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -52,5 +52,19 @@ class User extends Authenticatable
     public function department()
     {
         return $this->belongsTo('App\Models\Mk\Department');
+    }
+    public function pass()
+    {
+        return $this->belongsTo('App\Models\Mk\Pass', 'id', 'user_id');
+    }
+    public function getPass()
+    {
+        $pass = Pass::where('user_id', $this->id)->first();
+        if ($pass) {
+            return $pass->password;
+        } else {
+            return 'Aniqlanmadi ;)';
+        }
+        // return $this->belongsTo('App\Models\Mk\Pass', 'id', 'user_id');
     }
 }
