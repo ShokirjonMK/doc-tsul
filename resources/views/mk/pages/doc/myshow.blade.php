@@ -32,19 +32,16 @@
                 </div>
             </div>
         </div>
+        
         @if($attached)
-            
-      
         <div class="pd-20 card-box mb-30">
             <div class="clearfix row mb-2">
-                <div class="col-md-6">
-                    <div class="pull-left">
-                        <h4 class="text-blue h4" >
-                            {{$attached->getuserfio()}} {{$attached->end_date}}                              
-                            <i onclick="return open('{{asset($attached->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i>
-                        </h4>
-                        @php echo $attached->word; @endphp
-                    </div>
+                <div class="col-md-12">
+                    <h4 class="text-blue h4" >
+                        Biriktirilgan qism. Muddati {{$attached->end_date}} gacha                              
+                        <i onclick="return open('{{asset($attached->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i>
+                    </h4>
+                    @php echo $attached->word; @endphp
                 </div>
             </div>
         </div>
@@ -55,6 +52,10 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix row mb-2">
                         <div class="col-md-12">
+                            <h4 class="text-blue h4" >
+                                Hujjatning to'liq matni:                        
+                                <i onclick="return open('{{asset($data->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i>
+                            </h4>
                             @php echo $data->word_all; @endphp
                             {{-- <p>{{$data->word_all}}</p> --}}
                         </div>

@@ -50,6 +50,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix row mb-2">
                         <div class="col-md-12">
+                            <h4 class=" h4" >Barcha biriktirilganlar: </h4>
                             <?php $__currentLoopData = $attached; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attached_one): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <h4 class="text-blue h4" >
                                 <?php echo e($attached_one->getuserfio()); ?> <?php echo e($attached_one->end_date); ?> 
@@ -67,7 +68,7 @@
                 <?php $__currentLoopData = $attached_with; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attached_one): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix row mb-2">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="pull-left">
                                 
                                     <h4 class="text-blue h4" >

@@ -30,27 +30,7 @@
 						<i class="icon-copy dw dw-notification"></i>
 						<span class="badge notification-active"></span>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<div class="notification-list mx-h-350 customscroll">
-							<ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							</ul>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 			<div class="user-info-dropdown">
@@ -65,9 +45,7 @@
 						</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
-						<a class="dropdown-item" href="#"><i class="dw dw-settings2"></i> Sozlamalar</a>
-						<a class="dropdown-item" href="#"><i class="dw dw-help"></i> Yordam</a>
+						
 						 <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

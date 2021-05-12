@@ -10,6 +10,7 @@ use App\User;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -22,6 +23,12 @@ class AdminController extends Controller
 
     public function index()
     {
+        $now_user = User::find(Auth::id());
+        // return $now_user;
+        if ($now_user->role == 555) {
+            return redirect()->route('mk.doc.mydoc');
+        }
+
         return view('mk.pages.main');
     }
     public function userindex()

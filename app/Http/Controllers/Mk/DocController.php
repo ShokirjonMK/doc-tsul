@@ -97,10 +97,15 @@ class DocController extends Controller
 
     public function create()
     {
-        $users = User::where(['status' => 1])->get();
+        $users = User::where(['status' => 1])->where('role', 555)->get();
 
         $data = 'sssss';
 
+        $now_user = User::find(Auth::id());
+        // return $now_user;
+        if ($now_user->role == 555) {
+            return back()->with('validate', 'a');
+        }
         return view('mk.pages.doc.new', [
             'data' => $data,
             'users' => $users,

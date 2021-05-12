@@ -23,6 +23,13 @@ class UserController extends Controller
 
     public function index()
     {
+
+        $now_user = User::find(Auth::id());
+        // return $now_user;
+        if ($now_user->role == 555) {
+            return back()->with('validate', 'a');
+        }
+
         $user = User::where('role', 555)->get();
         return view('mk.pages.user.index', [
             'data' => $user
@@ -144,13 +151,30 @@ class UserController extends Controller
         if ($userrrr->update()) {
             $pass = Pass::where('user_id', $userrrr->id)->first();
 
-            $pass->user_id = $userrrr->id;
-            $pass->username = $userrrr->username;
-            if ($request->password) {
-                $pass->password = $request->password;
+            if (!$pass) {
+                $pass = new Pass();
+
+                $pass->user_id = $userrrr->id;
+                $pass->username = $userrrr->username;
+                if ($request->password) {
+                    $pass->password = $request->password;
+                }
+                $pass->created_by = Auth::user()->id;
+
+                $pass->save();
+            } else {
+
+
+                $pass->user_id = $userrrr->id;
+                $pass->username = $userrrr->username;
+                if ($request->password) {
+                    $pass->password = $request->password;
+                }
+                $pass->updated_by = Auth::user()->id;
+
+                $pass->update();
             }
-            $pass->updated_by = Auth::user()->id;
-            $pass->update();
+
             return redirect()->route('user.index')->with('success', 'Ma`lumot o`zgartirildi');
         }
         return $user;

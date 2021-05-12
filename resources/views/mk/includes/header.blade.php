@@ -52,27 +52,27 @@
 						<i class="icon-copy dw dw-notification"></i>
 						<span class="badge notification-active"></span>
 					</a>
-					<div class="dropdown-menu dropdown-menu-right">
+					{{-- <div class="dropdown-menu dropdown-menu-right">
 						<div class="notification-list mx-h-350 customscroll">
 							<ul>
-{{--								<li>--}}
-{{--									<a href="#">--}}
-{{--										<img src="{{ asset('assets/admin/vendors/images/img.jpg') }}" alt="">--}}
-{{--										<h3>John Doe</h3>--}}
-{{--										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>--}}
-{{--									</a>--}}
-{{--								</li>--}}
-{{--								<li>--}}
-{{--									<a href="#">--}}
-{{--										<img src="{{ asset('assets/admin/vendors/images/photo1.jpg') }}" alt="">--}}
-{{--										<h3>Lea R. Frith</h3>--}}
-{{--										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>--}}
-{{--									</a>--}}
-{{--								</li>--}}
+								<li>
+									<a href="#">
+										<img src="{{ asset('assets/admin/vendors/images/img.jpg') }}" alt="">
+										<h3>John Doe</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<img src="{{ asset('assets/admin/vendors/images/photo1.jpg') }}" alt="">
+										<h3>Lea R. Frith</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+									</a>
+								</li>
 
 							</ul>
 						</div>
-					</div>
+					</div> --}}
 				</div>
 			</div>
 			<div class="user-info-dropdown">
@@ -86,9 +86,9 @@
 						</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
+						{{-- <a class="dropdown-item" href="#"><i class="dw dw-user1"></i> Profil</a>
 						<a class="dropdown-item" href="#"><i class="dw dw-settings2"></i> Sozlamalar</a>
-						<a class="dropdown-item" href="#"><i class="dw dw-help"></i> Yordam</a>
+						<a class="dropdown-item" href="#"><i class="dw dw-help"></i> Yordam</a> --}}
 						 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
