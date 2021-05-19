@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\Mk\Doc;
 use App\Models\Mk\Files;
+use App\Models\Mk\Releted;
+use App\Models\Mk\Supervisor;
 use Dompdf\Adapter\PDFLib;
 use League\CommonMark\Block\Element\Document;
 
@@ -98,6 +100,8 @@ class DocController extends Controller
     public function create()
     {
         $users = User::where(['status' => 1])->where('role', 555)->get();
+        $releted = Releted::where(['status' => 1])->get();
+        $Supervisor = Supervisor::where(['status' => 1])->get();
 
         $data = 'sssss';
 
@@ -109,6 +113,8 @@ class DocController extends Controller
         return view('mk.pages.doc.new', [
             'data' => $data,
             'users' => $users,
+            'releted' => $releted,
+            'supervisor' => $Supervisor,
         ]);
 
         return view('mk.pages.doc.new');
@@ -125,6 +131,13 @@ class DocController extends Controller
             'end_date'             => ['required'],
             // 'users'                => ['required'],
             'word_all'             => ['required'],
+            'type'                 => ['required'],
+            'duration'                 => ['required'],
+            'supervisor_id'                 => ['required'],
+            'releted_id'                 => ['required'],
+            // 'supervisor_id'                 => ['required'],
+
+
             'document'             => 'required|mimes:pdf|max:5000',
         ]);
 
@@ -139,7 +152,11 @@ class DocController extends Controller
 
         $new_doc->status = $request->status;
         $new_doc->name = $request->name;
+        $new_doc->type = $request->type;
         $new_doc->number = $request->number;
+        $new_doc->releted_id = $request->releted_id;
+        $new_doc->supervisor_id = $request->supervisor_id;
+        $new_doc->duration = $request->duration;
 
         $request->end_date = date('Y-m-d', strtotime($request->end_date));
 
