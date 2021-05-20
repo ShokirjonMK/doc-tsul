@@ -6,7 +6,7 @@
 </style>
 @endsection
 
-<div class="pd-20 card-box mb-30">
+<div class="pd-20 card-box">
     <div class="clearfix row mb-2">
         <div class="col-md-7">
             <div class="pull-left">
@@ -50,7 +50,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label > Raqami :</label>
-                <input type="number" value="{{ old('number') }}" name="number" class="form-control">
+                <input type="text" value="{{ old('number') }}" name="number" class="form-control">
             </div>
         </div>
         <div class="col-md-3">
@@ -143,18 +143,17 @@
             @enderror
     </span>
     </label>
-    <div class="img-select ">
-        <button type="button" class="btn btn-light documet-select-button" data-select="document-mk">Fayl tanlang <i class="icon-copy fa fa-pencil" aria-hidden="true"></i></button>
+    <div class="img-select mb-5">
+        <button type="button" class="btn btn-light documet-select-button mb-20 w-100" data-select="document-mk">Fayl tanlang <i class="icon-copy fa fa-pencil" aria-hidden="true"></i></button>
     </div>
 
     <input type="file" id="document-mk" class="form-control file-input" hidden="true" name="document" accept="application/pdf" />
   {{-- <input required="true" hidden type="file" id="file_res" class="form-control file-input" name="order_file" accept="application/pdf"> --}}
+
+    <iframe id="iframePdf" style="display: none; width: 100%; height: 600px;" src="" class="document-mk" src=""></iframe>
 </div>
 
 
-
-        <iframe id="iframePdf" style="display: none; width: 100%; height: 600px;" src="" class="document-mk" src=""></iframe>
-        
 @section('js')
 
 {{-- Js fayl hajmini tekshirish --}}
