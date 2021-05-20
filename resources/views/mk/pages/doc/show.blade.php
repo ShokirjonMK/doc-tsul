@@ -49,7 +49,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix row mb-2">
                         <div class="col-md-12">
-                            <h4 class=" h4" >Barcha biriktirilganlar: </h4>
+                            <h4 class=" h4" >Barcha loyiha kirituvchilar: </h4>
                             @foreach ($attached as $attached_one)
                             <h4 class="text-blue h4" >
                                 {{$attached_one->getuserfio()}} {{$attached_one->end_date}} 
