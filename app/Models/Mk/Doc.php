@@ -3,6 +3,8 @@
 namespace App\Models\Mk;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Mk\Supervisor;
+use App\Models\Mk\Releted;
 
 class Doc extends Model
 {
@@ -19,46 +21,33 @@ class Doc extends Model
         'status'
     ];
 
-    // public function getStatus()
+    public function releted()
+    {
+        return $this->belongsTo(Releted::class, 'releted_id');
+    }
+    public function supervisor()
+    {
+        return $this->belongsTo(Supervisor::class, 'supervisor_id');
+    }
+    // public function releted()
     // {
-
-    //     // return date("Y-m-d", strtotime("+1 day"));
-    //     $doc = Doc::find($this->id)->first();
-    //     if ($doc->status == 0) {
-    //         return 'Nofaol';
-    //     }
-    //     if ($doc->status == 1) {
-    //         return 'Faol';
-    //     }
+    //     return $this->belongsTo(Releted::class, 'releted_id');
     // }
 
-
-    // public function getHolati()
-    // {
-
-    //     // return date("Y-m-d", strtotime("+1 day"));
-    //     $doc = Doc::find($this->id)->first();
-    //     // return $doc->end_date;
-
-
-    //     if ($doc->status == 0) {
-    //         return 'table-secondary';
-    //     }
-    //     if ($doc->end_date == date("Y-m-d")) {
-    //         return 'table-danger';
-    //     }
-
-    //     if ($doc->end_date == date("Y-m-d", strtotime("+1 day"))) {
-    //         return 'table-warning';
-    //     }
-    //     if ($doc->end_date > date("Y-m-d")) {
-    //         return 'table-info';
-    //     }
-    //     return $doc;
-    // }
-
-    // public function stdep()
-    // {
-    //     return $this->hasOne('App\Models\StDep')->where('staff_id', '=', $this->id)->where('status', 1);
-    // }
+    public function getType()
+    {
+        if ($this->type == 1) {
+            return "Buyruq";
+        } elseif ($this->type == 0) {
+            return "Kengash qarori";
+        }
+    }
+    public function getDuration()
+    {
+        if ($this->duration == 1) {
+            return "Davomiy";
+        } elseif ($this->duration == 0) {
+            return "Muddatli";
+        }
+    }
 }

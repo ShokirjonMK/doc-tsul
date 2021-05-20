@@ -40,6 +40,7 @@
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix row mb-2">
                         <div class="col-md-12">
+                            <h4 class=" h4" >Hujjatning to'liq matni  <i onclick="return open('<?php echo e(asset($data->generatedpdf)); ?>', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i></h4>
                                     <?php echo $data->word_all; ?>
                             
                         </div>
@@ -70,15 +71,13 @@
                     <div class="clearfix row mb-2">
                         <div class="col-md-12">
                             <div class="pull-left">
-                                
-                                    <h4 class="text-blue h4" >
-                                        <?php echo e($attached_one->getuserfio()); ?> <?php echo e($attached_one->end_date); ?>                              
-                                    <?php if($attached_one->with_file == 1): ?>
-                                        <i onclick="return open('<?php echo e(asset($attached_one->document)); ?>', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i>
-                                    <?php endif; ?>
-                                    </h4>
-                                    <?php echo $attached_one->word; ?>
-                            
+                                <h4 class="text-blue h4" >
+                                    <?php echo e($attached_one->getuserfio()); ?> <?php echo e($attached_one->end_date); ?>                              
+                                <?php if($attached_one->with_file == 1): ?>
+                                    <i onclick="return open('<?php echo e(asset($attached_one->document)); ?>', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i>
+                                <?php endif; ?>
+                                </h4>
+                                <?php echo $attached_one->word; ?>
                             </div>
                         </div>
                     </div>

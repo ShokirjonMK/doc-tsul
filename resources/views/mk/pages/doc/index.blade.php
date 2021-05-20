@@ -33,15 +33,19 @@
 					<div class="pb-20">
 						<table class=" data-table-export table stripe hover nowrap p-2">
                             <thead>
-                            <tr>
-                                <th class="table-plus datatable-nosort">#</th>
-                                <th>Nomi</th>
-                                <th>Raqami</th>
-                                <th>Muddati</th>
-                                <th class="text-center">Fayl</th>
-                                <th>Holati</th>
-                                {{-- <th></th> --}}
-                            </tr>
+                                <tr>
+                                    <th >#</th>
+                                    <th>Nomi</th>
+                                    <th class="table-plus datatable-nosort" style="width: 10px !important;"></th>
+                                    <th>Raqami</th>
+                                    <th style="width: 30px !important;">Muddati</th>
+                                    <th>Ta'luqliligi</th>
+                                    <th>Nazoratchi</th>
+                                    <th>Turi</th>
+                                    <th>Davomiyligi</th>
+                                    <th>Holati</th>
+                                    {{-- <th></th> --}}
+                                </tr>
                             </thead>
                             <tbody>
                             @php $i=1; @endphp
@@ -59,18 +63,33 @@
                             @if ($item->end_date > date("Y-m-d", strtotime("+1 day")))
                                   @php $item->statusclass = 'table-info' @endphp
                             @endif
-                                <tr>
                                 <tr class="{{$item->statusclass}}">
                                     <td>{{$i++}}</td>
                                     <td><a href="{{route('doc.show', $item->id)}}">{{$item->name}}</a></td>
+                                    <td style="width: 10px !important;"><i onclick="return open('{{asset($item->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 pointer"></i></td>
                                     <td>{{$item->number}}</td>
-                                    <td>{{$item->end_date}}</td>
-                                    <td><i onclick="return open('{{asset($item->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i></td>
-                                    <td>@if ($item->status == 1)
-                                        {{'Faol'}}
+                                    <td style="width: 30px !important;">{{$item->end_date}}</td>
+                                    <td>@isset($item->releted->name)
+                                        {{$item->releted->name}}
+                                        @endisset
+                                    </td>
+                                    <td>@isset($item->supervisor->name)
+                                        {{$item->supervisor->name}}
+                                        @endisset
+                                    </td>
+                                    <td>
+                                        {{$item->getType()}}
+                                    </td>
+                                    <td>
+                                        {{$item->getDuration()}}
+                                    </td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                        {{'Amalda'}}
                                         @elseif ($item->status == 0)
-                                        {{"Nofaol"}}
-                                    @endif</td>
+                                        {{"O'z kuchini yo'qotgan"}}
+                                        @endif
+                                    </td>
                                     {{-- <td class="last-td">
                                         <div class="dropdown">
                                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">

@@ -33,15 +33,19 @@
 					<div class="pb-20">
 						<table class=" data-table-export table stripe hover nowrap p-2">
                             <thead>
-                            <tr>
-                                <th class="table-plus datatable-nosort">#</th>
-                                <th>Nomi</th>
-                                <th>Raqami</th>
-                                <th>Muddati</th>
-                                <th class="text-center">Fayl</th>
-                                <th>Holati</th>
-                                
-                            </tr>
+                                <tr>
+                                    <th >#</th>
+                                    <th>Nomi</th>
+                                    <th class="table-plus datatable-nosort" style="width: 10px !important;"></th>
+                                    <th>Raqami</th>
+                                    <th style="width: 30px !important;">Muddati</th>
+                                    <th>Ta'luqliligi</th>
+                                    <th>Nazoratchi</th>
+                                    <th>Turi</th>
+                                    <th>Davomiyligi</th>
+                                    <th>Holati</th>
+                                    
+                                </tr>
                             </thead>
                             <tbody>
                             <?php $i=1; ?>
@@ -59,20 +63,39 @@
                             <?php if($item->end_date > date("Y-m-d", strtotime("+1 day"))): ?>
                                   <?php $item->statusclass = 'table-info' ?>
                             <?php endif; ?>
-                                <tr>
                                 <tr class="<?php echo e($item->statusclass); ?>">
                                     <td><?php echo e($i++); ?></td>
                                     <td><a href="<?php echo e(route('doc.show', $item->id)); ?>"><?php echo e($item->name); ?></a></td>
+                                    <td style="width: 10px !important;"><i onclick="return open('<?php echo e(asset($item->document)); ?>', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 pointer"></i></td>
                                     <td><?php echo e($item->number); ?></td>
-                                    <td><?php echo e($item->end_date); ?></td>
-                                    <td><i onclick="return open('<?php echo e(asset($item->document)); ?>', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 ml-5 pointer"></i></td>
-                                    <td><?php if($item->status == 1): ?>
-                                        <?php echo e('Faol'); ?>
+                                    <td style="width: 30px !important;"><?php echo e($item->end_date); ?></td>
+                                    <td><?php if(isset($item->releted->name)): ?>
+                                        <?php echo e($item->releted->name); ?>
+
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php if(isset($item->supervisor->name)): ?>
+                                        <?php echo e($item->supervisor->name); ?>
+
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo e($item->getType()); ?>
+
+                                    </td>
+                                    <td>
+                                        <?php echo e($item->getDuration()); ?>
+
+                                    </td>
+                                    <td>
+                                        <?php if($item->status == 1): ?>
+                                        <?php echo e('Amalda'); ?>
 
                                         <?php elseif($item->status == 0): ?>
-                                        <?php echo e("Nofaol"); ?>
+                                        <?php echo e("O'z kuchini yo'qotgan"); ?>
 
-                                    <?php endif; ?></td>
+                                        <?php endif; ?>
+                                    </td>
                                     
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
