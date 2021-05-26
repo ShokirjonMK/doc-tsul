@@ -31,7 +31,10 @@ class DocController extends Controller
     {
         $users = User::all();
 
-        $data = Doc::orderBy('end_date', 'DESC')->get();
+
+        $data = Doc::orderBy('id', 'DESC')->get();
+
+        //        $data = Doc::orderBy('end_date', 'DESC')->get();
 
         return view('mk.pages.doc.index', [
             'data' => $data,
@@ -176,14 +179,14 @@ class DocController extends Controller
         // }
 
         if ($request->hasFile('document')) {
-            $pdf_word_all = PDF::loadHTML($request->word_all);
-            $fileName = base64_encode(time() . $request->name) . '_' . time() . '.' . $request->document->extension();
+            $fileName = ('mk' . '_doc_' . time()) . '.' . $request->document->extension();
 
-            $pdf_word_all->save('doc/generatedpdf/' . $fileName);
+            //             $pdf_word_all = PDF::loadHTML($request->word_all);
+            //             $pdf_word_all->save('doc/generatedpdf/' . $fileName);
+            //             $new_doc->generatedpdf = 'doc/generatedpdf/' . $fileName;
 
             $request->document->move(public_path('doc/document'), $fileName);
             $new_doc->document = 'doc/document/' . $fileName;
-            $new_doc->generatedpdf = 'doc/generatedpdf/' . $fileName;
         }
 
         // if (is_array($request->users)) {
@@ -331,7 +334,7 @@ class DocController extends Controller
 
     public function edit(Doc $doc)
     {
-        //
+        //ss
     }
 
 
