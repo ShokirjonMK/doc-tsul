@@ -9,9 +9,7 @@
 						<input type="text" name="search" required="true" class="form-control search-input" placeholder="Qidirish...">
 						<div class="dropdown">
 							<button class="dropdown-toggle no-arrow btn btn-search"  type="submit" >
-								<i class="icon-copy fa fa-search mt-1" aria-hidden="true" 
-								
-									></i>
+								<i class="icon-copy fa fa-search mt-1" aria-hidden="true" ></i>
 							</button>
 						</div>
 					</div>
