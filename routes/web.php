@@ -97,7 +97,9 @@ Route::group([
     // Route::get('/user/{id}', 'AdminController@usershow')->name('mk.user.show');
     // Route::get('/user/{id}/edit', 'AdminController@useredit')->name('mk.user.edit');
     // Route::post('/userstore', 'AdminController@userstore')->name('mk.user.store');
-    // Route::post('/userupdate', 'AdminController@userupdate')->name('mk.user.update');
+
+
+    Route::post('/search', 'DocController@search')->name('search');
 
 
     Route::get('/mydoc', 'DocController@mydoc')->name('mk.doc.mydoc');

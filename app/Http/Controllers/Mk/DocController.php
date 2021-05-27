@@ -11,6 +11,7 @@ use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Mk\Doc;
 use App\Models\Mk\Files;
@@ -347,5 +348,47 @@ class DocController extends Controller
     public function destroy(Doc $doc)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        // return $request;
+
+
+
+        $data = DB::table('doc_document as doc')
+            ->leftJoin('doc_releted as rel', function ($join) {
+                $join->on('rel.id', 'doc.releted_id');
+            })
+            ->leftJoin('doc_supervisor as sup', function ($join) {
+                $join->on('sup.id', 'doc.supervisor_id');
+            })
+            ->where(function ($query) use ($request) {
+                if ($request->search != '') {
+                    $query->where('doc.word_all', 'LIKE', '%' . $request->search . '%');
+                    $query->orWhere('doc.name', 'LIKE', '%' . $request->search . '%');
+                }
+            })
+            ->select(
+                'doc.id',
+                'rel.name as releted',
+                'doc.name',
+                'doc.number',
+                'doc.end_date',
+                'doc.status',
+                'doc.type',
+                'doc.document',
+                'doc.duration',
+                'sup.name as supervisor',
+
+            )
+            ->orderBy('doc.id', 'DESC')
+            ->get();
+        // return $data;
+
+        return view('mk.pages.doc.search', [
+            'data' => $data,
+            'search' => $request->search,
+        ]);
     }
 }

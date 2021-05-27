@@ -2,15 +2,17 @@
 			<div class="menu-icon dw dw-menu"></div>
 			<div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
 			<div class="header-search">
-				<form>
+				<form autocomplete="off" id="mk-search" action="<?php echo e(route('search')); ?>" class="" method="post" enctype="multipart/form-data">
+					 <?php echo csrf_field(); ?>
 					<div class="form-group mb-0">
 						<i class="dw dw-search2 search-icon"></i>
-						<input type="text" class="form-control search-input" placeholder="Qidirish...">
+						<input type="text" name="search" required="true" class="form-control search-input" placeholder="Qidirish...">
 						<div class="dropdown">
-							<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
-								<i class="ion-arrow-down-c"></i>
-							</a>
-							
+							<button class="dropdown-toggle no-arrow btn btn-search"  type="submit" >
+								<i class="icon-copy fa fa-search mt-1" aria-hidden="true" 
+								
+									></i>
+							</button>
 						</div>
 					</div>
 				</form>
@@ -56,7 +58,6 @@
                                     <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
                                         <?php echo csrf_field(); ?>
                                     </form>
-
 						
 					</div>
 				</div>
