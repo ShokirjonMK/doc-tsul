@@ -94,7 +94,7 @@ Route::group([
     Route::get('/', 'AdminController@index')->name('mk');
 
     Route::post('/search', 'DocController@search')->name('search');
-    Route::post('/mk-searc', 'DocController@mk_search')->name('mk_search');
+    Route::post('/mk-search', 'DocController@mk_search')->name('mk_search');
 
 
     Route::get('/mydoc', 'DocController@mydoc')->name('mk.doc.mydoc');
