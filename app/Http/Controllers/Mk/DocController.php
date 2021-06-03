@@ -389,6 +389,88 @@ class DocController extends Controller
         return view('mk.pages.doc.search', [
             'data' => $data,
             'search' => $request->search,
+            'status' => 1
+        ]);
+    }
+
+    public function mk_search(Request $request)
+    {
+
+        $var = explode('-', $request->date_range);
+        $convert_date = [];
+
+        $convert_date['date1'] = date('Y-m-d', strtotime($var[0]));
+        if (isset($var[1])) {
+            $convert_date['date2'] = date('Y-m-d', strtotime($var[1]));
+            $convert_date['date_status'] = 1;
+        } else {
+            $convert_date['date2'] = 'yoq';
+            $convert_date['date_status'] = 0;
+        }
+        // return $request;
+        // return $convert_date;
+        $data = DB::table('doc_document as doc')
+            ->leftJoin('doc_releted as rel', function ($join) {
+                $join->on('rel.id', 'doc.releted_id');
+            })
+            ->leftJoin('doc_supervisor as sup', function ($join) {
+                $join->on('sup.id', 'doc.supervisor_id');
+            })
+            ->where(function ($query) use ($request, $convert_date) {
+                if ($request->name != '') {
+                    $query->orWhere('doc.name', 'LIKE', '%' . $request->name . '%');
+                }
+                if ($request->word_all != '') {
+                    $query->where('doc.word_all', 'LIKE', '%' . $request->word_all . '%');
+                }
+                if ($request->number != '') {
+                    $query->where('doc.number', 'LIKE', '%' . $request->number . '%');
+                }
+                if ($request->supervisor_id != 0) {
+                    $query->where('doc.supervisor_id', $request->supervisor_id);
+                }
+                if ($request->releted_id != 0) {
+                    $query->where('doc.releted_id', $request->releted_id);
+                }
+                if ($request->type != 2) {
+                    $query->where('doc.type', $request->type);
+                }
+                if ($request->duration != 2) {
+                    $query->where('doc.duration', $request->duration);
+                }
+                if ($request->status != 2) {
+                    $query->where('doc.status', $request->status);
+                }
+                if ($request->date_range != '') {
+                    $query->where('doc.end_date', '>=', $convert_date['date1']);
+                    if ($convert_date['date_status']) {
+                        $query->where('doc.end_date', '<=', $convert_date['date2']);
+                    }
+                }
+            })
+            ->select(
+                'doc.id',
+                'rel.name as releted',
+                'doc.name',
+                'doc.number',
+                'doc.end_date',
+                'doc.status',
+                'doc.type',
+                'doc.document',
+                'doc.duration',
+                'sup.name as supervisor',
+
+            )
+            ->orderBy('doc.id', 'DESC')
+            ->get();
+
+
+        // return $data;
+
+        return view('mk.pages.doc.search', [
+            'data' => $data,
+            'search' => 'Asosiy filter',
+            'status' => 1
         ]);
     }
 }

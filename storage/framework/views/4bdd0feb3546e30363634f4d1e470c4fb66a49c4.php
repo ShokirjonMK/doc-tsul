@@ -13,7 +13,7 @@
                             <h4 class="text-blue h4">"<?php echo e($search); ?>" bo'yicha qidiruv natijasi</h4>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a class="p-2 m-2" href="<?php echo e(route('doc.index')); ?>" >
+                            <a class="p-2 m-2" href="<?php if($status): ?> <?php echo e(route('mk')); ?><?php else: ?><?php echo e(route('doc.index')); ?><?php endif; ?>" >
                                 
                               <i class="icon-copy dw dw-refresh2" style="font-size: 20px"> tozalash </i>
                            </a>

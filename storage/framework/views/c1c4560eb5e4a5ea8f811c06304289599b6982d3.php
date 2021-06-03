@@ -58,7 +58,7 @@
                                     </form>
 						
 					</div>
-				</div>
+				</div>~
 			</div>
 			<div class="github-link">
 				<a href="https://t.me/ShokirjonMK" target="_blank"><img src="vendors/images/github.svg" alt=""></a>

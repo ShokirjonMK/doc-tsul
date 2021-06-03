@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Mk;
 use App\Http\Controllers\Controller;
 use App\Models\Mk\Department;
 use App\Models\Mk\Pass;
+use App\Models\Mk\Releted;
+use App\Models\Mk\Supervisor;
 use App\User;
 
 
@@ -29,7 +31,25 @@ class AdminController extends Controller
             return redirect()->route('mk.doc.mydoc');
         }
 
-        return view('mk.pages.main');
+        $users = User::where(['status' => 1])->where('role', 555)->get();
+        $releted = Releted::where(['status' => 1])->get();
+        $Supervisor = Supervisor::where(['status' => 1])->get();
+
+        $data = 'sssss';
+
+        $now_user = User::find(Auth::id());
+        // return $now_user;
+        if ($now_user->role == 555) {
+            return back()->with('validate', 'a');
+        }
+
+
+        return view('mk.pages.main', [
+            'data' => $data,
+            'users' => $users,
+            'releted' => $releted,
+            'supervisor' => $Supervisor,
+        ]);
     }
     public function userindex()
     {

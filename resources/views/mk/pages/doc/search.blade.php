@@ -32,7 +32,7 @@
                             <h4 class="text-blue h4">"{{$search}}" bo'yicha qidiruv natijasi</h4>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a class="p-2 m-2" href="{{route('doc.index')}}" >
+                            <a class="p-2 m-2" href="@if($status) {{route('mk')}}@else{{route('doc.index')}}@endif" >
                                 {{-- <i class="icon-copy dw dw-list" style="font-size: 20px"></i> --}}
                               <i class="icon-copy dw dw-refresh2" style="font-size: 20px"> tozalash </i>
                            </a>

@@ -148,8 +148,12 @@ return [
     */
 
     'attributes' => [
-        'name'                  => 'Ism',
-        'username'              => 'Nickname',
+        'name'                  => 'Nomi',
+        'number'                => 'Raqam',
+        'end_date'              => 'Muddati',
+        'document'              => 'Hujjat fayli',
+        'word_all'              => 'Hujjatning to\'liq matni',
+        'username'              => 'Foydalanuvchi nomi',
         'email'                 => 'Elektron manzil',
         'first_name'            => 'Ism',
         'last_name'             => 'Familiya',

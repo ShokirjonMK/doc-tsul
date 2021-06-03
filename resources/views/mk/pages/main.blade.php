@@ -29,6 +29,118 @@
                    </div>
                 </div>
             </div>
+            <div class="faq-wrap">	
+                <div class="padding-bottom-30">
+                    <div class="card">
+                        <div class="card-header">
+                            <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2-2">
+                                <h4 class="h4 text-blue">Umumiy qidiruv</h4>
+                            </button>
+                        </div>
+                        <div id="faq2-2" class="collapse">
+                            <div class="card-body">
+                               <form autocomplete="off" id="mk-search" action="{{ route('mk_search') }}" class="" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label> Nomi :</label>
+                                                <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label > Raqami :</label>
+                                                <input type="text" value="{{ old('number') }}" name="number" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label > Nazoratchi :</label>
+                                                <select class="selectpicker form-control" required name="supervisor_id" data-style="btn-outline-primary">
+                                                    <option value="0">Barcha</option>
+                                                    @foreach ($supervisor as $supervisor_one)
+                                                        <option value="{{$supervisor_one->id}}">{{$supervisor_one->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label > Hujjat ta'luqliligi :</label>
+                                                <select class="selectpicker form-control" required name="releted_id" data-style="btn-outline-primary">
+                                                    <option value="0">Barcha</option>
+                                                    @foreach ($releted as $releted_one)
+                                                        <option value="{{$releted_one->id}}">{{$releted_one->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label> Hujjat matnidan  :</label>
+                                                <textarea type="text" name="word_all" class="form-control"> 
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label> Hujjat turi :</label>
+                                                    <select class="selectpicker form-control" required name="type" data-style="btn-outline-primary">
+                                                        {{-- <select name="status" required class="custom-select col-12"> --}}
+                                                        <option value="2" selected>Barchasi</option>                
+                                                        <option value="1">Buyruq</option>
+                                                        <option value="0">Kengash qarori</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Davomiyligi</label>
+                                                    <select class="selectpicker form-control" required name="duration" data-style="btn-outline-primary">
+                                                        {{-- <select name="status" required class="custom-select col-12"> --}} 
+                                                        <option value="2" selected>Barchasi</option>                      
+                                                        <option value="1">Doimiy</option>
+                                                        <option value="0">Muddatli</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label> Muddati (oraliqni belgilang) </label>
+                                                    <input class="form-control datetimepicker-range" name="date_range" placeholder="Select Month" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label> Holati </label>
+                                                    <select class="selectpicker form-control" required name="status" data-style="btn-outline-primary">
+                                                        <option value="2" selected>Barchasi</option>
+                                                        <option value="1"  >Amalda</option>
+                                                        <option value="0">O'z kuchini yo'qotgan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="text-right">
+                                        <button class="btn btn-primary" role="button" >
+                                            <i class="icon-copy dw dw-search" style="font-size: 20px"></i> Izlash
+                                        </button>
+                                    </div>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
             <div class="row clearfix progress-box">
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 height-100-p">
