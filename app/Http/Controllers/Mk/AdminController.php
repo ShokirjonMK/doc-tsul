@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mk;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mk\Department;
+use App\Models\Mk\Doc;
 use App\Models\Mk\Pass;
 use App\Models\Mk\Releted;
 use App\Models\Mk\Supervisor;
@@ -43,8 +44,10 @@ class AdminController extends Controller
             return back()->with('validate', 'a');
         }
 
+        $doc = Doc::all();
 
         return view('mk.pages.main', [
+            'count' => $doc->count(),
             'data' => $data,
             'users' => $users,
             'releted' => $releted,

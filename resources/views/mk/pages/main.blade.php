@@ -147,7 +147,7 @@
                         <div class="progress-box text-center">
                             <input type="text" class="knob dial1" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
                             <h5 class="text-blue padding-top-10 h5">Yangi hujjatlar</h5>
-                            <span class="d-block"> 500  <i class="fa fa-line-chart text-blue"></i></span>
+                            <span class="d-block"> {{$count}}  <i class="fa fa-line-chart text-blue"></i></span>
                         </div>
                     </div>
                 </div>

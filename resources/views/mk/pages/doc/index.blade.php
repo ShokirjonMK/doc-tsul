@@ -65,7 +65,9 @@
                             @endif
                                 <tr class="{{$item->statusclass}}">
                                     <td>{{$i++}}</td>
-                                    <td><a href="{{route('doc.show', $item->id)}}">{{$item->name}}</a></td>
+                                    <td><a href="{{route('doc.show', $item->id)}}">
+                                        {{ \Illuminate\Support\Str::limit($item->name, 220, ' ...') }}
+                                    </a></td>
                                     <td style="width: 10px !important;"><i onclick="return open('{{asset($item->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 pointer"></i></td>
                                     <td>{{$item->number}}</td>
                                     <td style="width: 30px !important;">{{$item->end_date}}</td>

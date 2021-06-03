@@ -65,7 +65,10 @@
                             <?php endif; ?>
                                 <tr class="<?php echo e($item->statusclass); ?>">
                                     <td><?php echo e($i++); ?></td>
-                                    <td><a href="<?php echo e(route('doc.show', $item->id)); ?>"><?php echo e($item->name); ?></a></td>
+                                    <td><a href="<?php echo e(route('doc.show', $item->id)); ?>">
+                                        <?php echo e(\Illuminate\Support\Str::limit($item->name, 220, ' ...')); ?>
+
+                                    </a></td>
                                     <td style="width: 10px !important;"><i onclick="return open('<?php echo e(asset($item->document)); ?>', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 pointer"></i></td>
                                     <td><?php echo e($item->number); ?></td>
                                     <td style="width: 30px !important;"><?php echo e($item->end_date); ?></td>
