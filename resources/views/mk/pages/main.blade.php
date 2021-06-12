@@ -33,11 +33,11 @@
                 <div class="padding-bottom-30">
                     <div class="card">
                         <div class="card-header">
-                            <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2-2">
+                            <button class="btn btn-block collaps" data-toggle="collapse" data-target="#faq2-2">
                                 <h4 class="h4 text-blue">Umumiy qidiruv</h4>
                             </button>
                         </div>
-                        <div id="faq2-2" class="collapse">
+                        <div id="faq2-2" class="show">
                             <div class="card-body">
                                <form autocomplete="off" id="mk-search" action="{{ route('mk_search') }}" class="" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -82,7 +82,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label> Hujjat matnidan  :</label>
-                                                <textarea type="text" name="word_all" class="form-control"> 
+                                                <textarea type="text" style="height: 140px;" name="word_all" class="form-control"> 
                                                 </textarea>
                                             </div>
                                         </div>
@@ -142,121 +142,111 @@
                 </div>
             </div>
             <div class="row clearfix progress-box">
+                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+                    <div class="card-box pd-30 height-100-p">
+                        <div class="progress-box text-center">
+                            <input type="text" class="knob dial4" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#a683eb" data-angleOffset="180" readonly>
+                            <h5 class="text-light-purple padding-top-10 h5"> Buyruq / Kengash qarori </h5>
+                            <span class="d-block"> {{$buyruq}} / {{$kengash}} <i class="fa text-light-purple fa-line-chart"></i></span>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+                    <div class="card-box pd-30 height-100-p">
+                        <div class="progress-box text-center">
+                            <input type="text" class="knob dial2" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly>
+                            <h5 class="text-light-green padding-top-10 h5">Faol hujjatlar</h5>
+                            <span class="d-block"> {{$faol}} <i class="fa text-light-green fa-line-chart"></i></span>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
                             <input type="text" class="knob dial1" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#1b00ff" data-angleOffset="180" readonly>
-                            <h5 class="text-blue padding-top-10 h5">Yangi hujjatlar</h5>
-                            <span class="d-block"> {{$count}}  <i class="fa fa-line-chart text-blue"></i></span>
+                            <h5 class="text-blue padding-top-10 h5">Doimiy / Muddatli hujjatlar</h5>
+                            <span class="d-block"> {{$doimiy}} / {{$muddatli}} <i class="fa fa-line-chart text-blue"></i></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                    <div class="card-box pd-30 height-100-p">
-                        <div class="progress-box text-center">
-                            <input type="text" class="knob dial2" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#00e091" data-angleOffset="180" readonly>
-                            <h5 class="text-light-green padding-top-10 h5">Yakunlangan</h5>
-                            <span class="d-block"> 300 <i class="fa text-light-green fa-line-chart"></i></span>
-                        </div>
-                    </div>
-                </div>
+               
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 height-100-p">
                         <div class="progress-box text-center">
                             <input type="text" class="knob dial3" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#f56767" data-angleOffset="180" readonly>
-                            <h5 class="text-light-orange padding-top-10 h5">Faol hujjatlar</h5>
-                            <span class="d-block"> 200 <i class="fa text-light-orange fa-line-chart"></i></span>
+                            <h5 class="text-light-orange padding-top-10 h5"> Faol bo'lmaganlar </h5>
+                            <span class="d-block"> {{$yakunlangan}} <i class="fa text-light-orange fa-line-chart"></i></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                    <div class="card-box pd-30 height-100-p">
-                        <div class="progress-box text-center">
-                            <input type="text" class="knob dial4" value="300" data-width="100" data-height="100" data-linecap="round" data-thickness="0.12" data-bgColor="#fff" data-fgColor="#a683eb" data-angleOffset="180" readonly>
-                            <h5 class="text-light-purple padding-top-10 h5"> Bajarilganlar </h5>
-                            <span class="d-block"> 200 | 211 <i class="fa text-light-purple fa-line-chart"></i></span>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
                     <div class="card-box pd-30 pt-10 height-100-p">
-                        <h2 class="mb-30 h4">Hujjat turlari</h2>
+                        <h2 class="mb-30 h4">Hujjat ta'luqliligi bo'yicha holati</h2>
                         <div class="browser-visits">
-                            {{-- <ul>
+                            <ul>
                                 <li class="d-flex flex-wrap align-items-center">
                                     <div class="icon">
-                                        <i  style="color: #1b00ff;" class="icon-copy fa fa-id-badge" aria-hidden="true"></i>
+                                        <span style="color: #1b00ff;" class="icon-copy ti-slice"></span>
+                                        
                                     </div>
-                                    <div class="browser-name">Professorlar | Dotsentlar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-primary">12 | 20</span></div>
+                                    <div class="browser-name">O'quv yo'nalish</div>
+                                    <div class="visit"><span class="badge badge-pill badge-primary">{{$doc->where('releted_id', 1)->count()}}</span></div>
                                 </li>
                                 <li class="d-flex flex-wrap align-items-center">
                                     <div class="icon">
-                                        <i style="color: #1b00ff;" class="icon-copy fa fa-user-circle-o" aria-hidden="true"></i>
+                                        
+                                        <span style="color: #1b00ff;" class="icon-copy ti-signal"></span>
+                                        {{-- <i  class="icon-copy fa fa-user-circle-o" aria-hidden="true"></i> --}}
                                     </div>
-                                    <div class="browser-name">Fan nomzod | doktorlari soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-secondary">14 | 25</span></div>
+                                    <div class="browser-name">Ilmiy yo'nalish</div>
+                                    <div class="visit"><span class="badge badge-pill badge-secondary">{{$doc->where('releted_id', 2)->count()}}</span></div>
                                 </li>
                                 <li class="d-flex flex-wrap align-items-center">
                                     <div class="icon">
                                         <i style="color: #1b00ff;" class="icon-copy fa fa-star-half-empty" aria-hidden="true"></i>
                                     </div>
-                                    <div class="browser-name">Darajasizlar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-success">26 | 32</span></div>
+                                    <div class="browser-name">Ma'naviy yo'nalish</div>
+                                    <div class="visit"><span class="badge badge-pill badge-success">{{$doc->where('releted_id', 3)->count()}}</span></div>
                                 </li>
-                                <hr>
+                              
                                 <li class="d-flex flex-wrap align-items-center">
                                     <div class="icon">
                                         <i style="color: #1b00ff;" class="icon-copy fa fa-dot-circle-o" aria-hidden="true"></i>
                                     </div>
-                                    <div class="browser-name">Davlat adliya maslahatchisi</div>
-                                    <div class="visit"><span class="badge badge-pill badge-warning">13</span></div>
+                                    <div class="browser-name">Xalqaro yo'nalish</div>
+                                    <div class="visit"><span class="badge badge-pill badge-warning">{{$doc->where('releted_id', 4)->count()}}</span></div>
                                 </li>
                                 <li class="d-flex flex-wrap align-items-center">
                                     <div class="icon">
                                         <i style="color: #1b00ff;" class="icon-copy ion-ionic"></i>
                                     </div>
-                                    <div class="browser-name">Unvonlilar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-info">32</span></div>
+                                    <div class="browser-name">Kadr yo'nalishi</div>
+                                    <div class="visit"><span class="badge badge-pill badge-info">{{$doc->where('releted_id', 5)->count()}}</span></div>
                                 </li>
-                                <li class="d-flex flex-wrap align-items-center">
-                                    <div class="icon">
-                                        <i style="color: #1b00ff;" class="icon-copy ion-ionic"></i>
-                                    </div>
-                                    <div class="browser-name">Unvonsizlar soni</div>
-                                    <div class="visit"><span class="badge badge-pill badge-info">21</span></div>
-                                </li>
-                            </ul> --}}
+                               
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-6 col-sm-12 mb-30">
-                    <div class="card-box pd-30 pt-10 height-100-p">
-                        <h2 class="mb-30 h4">O'zbekiston xaritasi</h2>
-{{--                       <div id="container"></div>--}}
-                       <div id="container"></div>
+                    <div class="bg-white pd-20 card-box mb-30 h-100">
+                        <div id="chart5"></div>
                     </div>
                 </div>
             </div>
-{{--            <div class="row">--}}
-{{--                <div class="col-lg-7 col-md-12 col-sm-12 mb-30">--}}
-{{--                    <div class="card-box pd-30 height-100-p">--}}
-{{--                        <h4 class="mb-30 h4">Compliance Trend</h4>--}}
-{{--                        <div id="compliance-trend" class="compliance-trend"></div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-5 col-md-12 col-sm-12 mb-30">--}}
-{{--                    <div class="card-box pd-30 height-100-p">--}}
-{{--                        <h4 class="mb-30 h4">Records</h4>--}}
-{{--                        <div id="chart" class="chart"></div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <div class="footer-wrap pd-20 mb-20 card-box">
-                ShokirjonMK <a href="https://t.me/ShokirjonMK" target="_blank">Bog'lanish</a>
 
+            
+				
+				
+         
+           
+            
+            <div class="footer-wrap pd-20 mb-20 card-box">
+                 <a href="https://t.me/ShokirjonMK" style="text-decoration: none" target="_blank">TOSHKENT DAVLAT YURIDIK UNIVERSITETI
+                    "ELEKTRON UNIVERSITET" MARKAZI</a>
             </div>
         </div>
     </div>
@@ -264,74 +254,36 @@
 
 
 @section("js")
-    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-
-   	<script src="{{ asset('js/uzbekistan_chart.js') }}"></script>
-
-
- <script>
-        // Prepare demo data
-// Data is joined to map using value of 'hc-key' property by default.
-// See API docs for 'joinBy' for more info on linking data and map.
-var data = [
-    ['uz-fa', 0],
-    ['uz-tk', 1],
-    ['uz-an', 2],
-    ['uz-ng', 3],
-    ['uz-ji', 4],
-    ['uz-si', 5],
-    ['uz-ta', 6],
-    ['uz-bu', 7],
-    ['uz-kh', 8],
-    ['uz-qr', 9],
-    ['uz-nw', 10],
-    ['uz-sa', 11],
-    ['uz-qa', 12],
-    ['uz-su', 13]
-];
-
-// Create the chart
-Highcharts.mapChart('container', {
-    chart: {
-        map: 'countries/uz/uz-all'
-    },
-
-    title: {
-        text: 'O\'zbekiston'
-    },
-
-    subtitle: {
-        text: 'Xaritasi '
-    },
-
-    mapNavigation: {
-        enabled: true,
-        buttonOptions: {
-            verticalAlign: 'bottom'
-        }
-    },
-
-    colorAxis: {
-        min: 0
-    },
-
-    series: [{
-        data: data,
-        name: 'Test',
-        states: {
-            hover: {
-                color: '#BADA55'
-            }
-        },
-        dataLabels: {
-            enabled: true,
-            format: '{point.name}'
-        }
-    }]
+    {{-- <script src="https://code.highcharts.com/maps/highmaps.js"></script> --}}
+  
+    {{-- <script src="{{ asset('assets/admin/vendors/scripts/apexcharts-setting.js') }}"></script> --}}
+    <script>
+       Highcharts.chart('chart5', {
+	title: {
+		text: 'Statistika'
+	},
+	xAxis: {
+		// categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	},
+	series: [{
+		type: 'pie',
+		allowPointSelect: true,
+		keys: ['name', 'y', 'selected', 'sliced'],
+		data: [
+            ['Kadr yo\'nalish', {{$doc->where('releted_id', 5)->count()}}, false],
+            ['Ilmiy yo\'nalish', {{$doc->where('releted_id', 2)->count()}}, false],
+            ['Ma\'naviy yo\'nalish', {{$doc->where('releted_id', 3)->count()}}, false],
+            ['O\'quv yo\'nalish', {{$doc->where('releted_id', 1)->count()}}, true, true],
+            ['Xalqaro yo\'nalish', {{$doc->where('releted_id', 4)->count()}}, false]
+		
+		],
+		showInLegend: true
+	}]
 });
 
     </script>
-
+	
+    
 
     <script>
          $("text.highcharts-credits").empty();
@@ -340,7 +292,7 @@ Highcharts.mapChart('container', {
 
     <script>
         $(".dial1").knob();
-        $({animatedVal: 0}).animate({animatedVal: 80}, {
+        $({animatedVal: 0}).animate({animatedVal: {{$doimiy_f}}}, {
             duration: 3000,
             easing: "swing",
             step: function() {
@@ -349,7 +301,7 @@ Highcharts.mapChart('container', {
         });
 
         $(".dial2").knob();
-        $({animatedVal: 0}).animate({animatedVal: 50}, {
+        $({animatedVal: 0}).animate({animatedVal: {{$faol_f}}}, {
             duration: 3000,
             easing: "swing",
             step: function() {
@@ -358,7 +310,7 @@ Highcharts.mapChart('container', {
         });
 
         $(".dial3").knob();
-        $({animatedVal: 0}).animate({animatedVal: 60}, {
+        $({animatedVal: 0}).animate({animatedVal: {{$yakunlangan_f}}}, {
             duration: 3000,
             easing: "swing",
             step: function() {
@@ -367,7 +319,7 @@ Highcharts.mapChart('container', {
         });
 
         $(".dial4").knob();
-        $({animatedVal: 0}).animate({animatedVal: 30}, {
+        $({animatedVal: 0}).animate({animatedVal: {{$buyruq_f}}}, {
             duration: 3000,
             easing: "swing",
             step: function() {

@@ -109,8 +109,8 @@
 
                                         
             <div class="footer-wrap pd-20 mb-20 card-box">
-                ShokirjonMK <a href="https://t.me/ShokirjonMK" target="_blank">Bog'lanish</a>
-
+                 <a href="https://t.me/ShokirjonMK" style="text-decoration: none" target="_blank">TOSHKENT DAVLAT YURIDIK UNIVERSITETI
+                    "ELEKTRON UNIVERSITET" MARKAZI</a>
             </div>
         </div>
     </div>

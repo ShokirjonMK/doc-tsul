@@ -21,7 +21,8 @@
                         </div>
 					</div>
 					<div class="pb-20">
-						<table class=" data-table-export table stripe hover nowrap p-2">
+						
+						<table class="table p-2 stripe data-table hover">
                             <thead>
                                 <tr>
                                     <th >#</th>
@@ -106,9 +107,9 @@
 				</div>
 
                                         
-            <div class="footer-wrap pd-20 mb-20 card-box">
-                ShokirjonMK <a href="https://t.me/ShokirjonMK" target="_blank">Bog'lanish</a>
-
+          <div class="footer-wrap pd-20 mb-20 card-box">
+                 <a href="https://t.me/ShokirjonMK" style="text-decoration: none" target="_blank">TOSHKENT DAVLAT YURIDIK UNIVERSITETI
+                    "ELEKTRON UNIVERSITET" MARKAZI</a>
             </div>
         </div>
     </div>

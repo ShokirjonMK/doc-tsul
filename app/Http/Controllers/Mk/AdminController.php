@@ -34,7 +34,7 @@ class AdminController extends Controller
 
         $users = User::where(['status' => 1])->where('role', 555)->get();
         $releted = Releted::where(['status' => 1])->get();
-        $Supervisor = Supervisor::where(['status' => 1])->get();
+        $supervisor = Supervisor::where(['status' => 1])->get();
 
         $data = 'sssss';
 
@@ -45,13 +45,35 @@ class AdminController extends Controller
         }
 
         $doc = Doc::all();
+        $faol = Doc::where('status', 1)->count();
+        $yakunlangan = Doc::where('status', 0)->count();
+        $doimiy = Doc::where('duration', 0)->count();
+        $muddatli = Doc::where('duration', 1)->count();
+        $kengash = Doc::where('type', 0)->count();
+        $buyruq = Doc::where('type', 1)->count();
+        $doimiy_f = 100 * $doimiy / $doc->count();
+        $faol_f = 100 * $faol / $doc->count();
+        $yakunlangan_f = 100 * $yakunlangan / $doc->count();
+        $buyruq_f = 100 * $buyruq / $doc->count();
 
+        // return $doc;
         return view('mk.pages.main', [
-            'count' => $doc->count(),
+            // 'count' => $doc->count(),
             'data' => $data,
+            'buyruq' => $buyruq,
+            'kengash' => $kengash,
+            'muddatli' => $muddatli,
+            'yakunlangan' => $yakunlangan,
+            'doimiy' => $doimiy,
+            'doimiy_f' => $doimiy_f,
+            'yakunlangan_f' => $yakunlangan_f,
+            'buyruq_f' => $buyruq_f,
+            'faol_f' => $faol_f,
+            'faol' => $faol,
             'users' => $users,
             'releted' => $releted,
-            'supervisor' => $Supervisor,
+            'supervisor' => $supervisor,
+            'doc' => $doc
         ]);
     }
     public function userindex()
