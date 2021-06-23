@@ -140,8 +140,6 @@ class DocController extends Controller
             'supervisor_id'                 => ['required'],
             'releted_id'                 => ['required'],
             // 'supervisor_id'                 => ['required'],
-
-
             'document'             => 'required|mimes:pdf|max:5000',
         ]);
 
