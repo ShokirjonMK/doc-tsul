@@ -29,7 +29,7 @@
                    </div>
                 </div>
             </div>
-            <div class="faq-wrap">	
+            <div class="faq-wrap">  
                 <div class="padding-bottom-30">
                     <div class="card">
                         <div class="card-header">
@@ -239,8 +239,8 @@
             </div>
 
             
-				
-				
+                
+                
          
            
             
@@ -259,30 +259,30 @@
     {{-- <script src="{{ asset('assets/admin/vendors/scripts/apexcharts-setting.js') }}"></script> --}}
     <script>
        Highcharts.chart('chart5', {
-	title: {
-		text: 'Statistika'
-	},
-	xAxis: {
-		// categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-	},
-	series: [{
-		type: 'pie',
-		allowPointSelect: true,
-		keys: ['name', 'y', 'selected', 'sliced'],
-		data: [
+    title: {
+        text: 'Statistika'
+    },
+    xAxis: {
+        // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    series: [{
+        type: 'pie',
+        allowPointSelect: true,
+        keys: ['name', 'y', 'selected', 'sliced'],
+        data: [
             ['Kadr yo\'nalish', {{$doc->where('releted_id', 5)->count()}}, false],
             ['Ilmiy yo\'nalish', {{$doc->where('releted_id', 2)->count()}}, false],
             ['Ma\'naviy yo\'nalish', {{$doc->where('releted_id', 3)->count()}}, false],
             ['O\'quv yo\'nalish', {{$doc->where('releted_id', 1)->count()}}, true, true],
             ['Xalqaro yo\'nalish', {{$doc->where('releted_id', 4)->count()}}, false]
-		
-		],
-		showInLegend: true
-	}]
+        
+        ],
+        showInLegend: true
+    }]
 });
 
     </script>
-	
+    
     
 
     <script>

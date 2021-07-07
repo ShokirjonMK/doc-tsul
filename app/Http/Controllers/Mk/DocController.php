@@ -129,6 +129,8 @@ class DocController extends Controller
     {
         $input = $request->all();
 
+        // return $request->file('document');
+
         $validator = Validator::make($input, [
             'name'                 => ['required', 'max:255', 'string'],
             'number'               => ['required'],
@@ -136,11 +138,13 @@ class DocController extends Controller
             // 'users'                => ['required'],
             'word_all'             => ['required'],
             'type'                 => ['required'],
-            'duration'                 => ['required'],
+            'duration'                  => ['required'],
             'supervisor_id'                 => ['required'],
             'releted_id'                 => ['required'],
             // 'supervisor_id'                 => ['required'],
-            'document'             => 'required|mimes:pdf|max:5000',
+
+
+            'document'             => ['required','max:18384'],
         ]);
 
         // return $request;
@@ -149,6 +153,9 @@ class DocController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('validate', 'a');
         }
+
+
+// return 1;
 
         $new_doc = new Doc();
 
@@ -243,7 +250,6 @@ class DocController extends Controller
 
             // return $sss;
 
-
             if (is_array($request->user)) {
                 foreach ($request->user as $key => $user_id) {
                     $new_attach_part = new AttachPart();
@@ -273,8 +279,6 @@ class DocController extends Controller
 
             if ($new_doc->user_all == 1) {
                 $users = User::select('id')->get();
-
-
 
                 foreach ($users as $key => $user) {
                     $is_aldeady_recorded = AttachPart::where(['document_id' => $new_doc->id])
@@ -330,7 +334,6 @@ class DocController extends Controller
         ]);
     }
 
-
     public function edit(Doc $doc)
     {
         //ss
@@ -351,8 +354,6 @@ class DocController extends Controller
     public function search(Request $request)
     {
         // return $request;
-
-
 
         $data = DB::table('doc_document as doc')
             ->leftJoin('doc_releted as rel', function ($join) {
@@ -459,7 +460,8 @@ class DocController extends Controller
                 'sup.name as supervisor',
 
             )
-            ->orderBy('doc.id', 'DESC')
+            // ->orderBy('doc.id', 'DESC')
+            ->orderBy('doc.number', 'DESC')
             ->get();
 
 

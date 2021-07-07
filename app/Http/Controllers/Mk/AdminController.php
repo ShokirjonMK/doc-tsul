@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Mk;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mk\Department;
-use App\Models\Mk\Doc;
 use App\Models\Mk\Pass;
 use App\Models\Mk\Releted;
+use App\Models\Mk\Doc;
 use App\Models\Mk\Supervisor;
 use App\User;
 
@@ -76,6 +76,7 @@ class AdminController extends Controller
             'doc' => $doc
         ]);
     }
+    
     public function userindex()
     {
         $user = User::where('role', 555)->get();

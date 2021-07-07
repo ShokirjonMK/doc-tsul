@@ -27,7 +27,7 @@
             </div> --}}
 
             <div class="card-box mb-30">
-					<div class="pd-20 row">
+                    <div class="pd-20 row">
                         <div class="col-md-6">
                             <h4 class="text-blue h4">"{{$search}}" bo'yicha qidiruv natijasi</h4>
                         </div>
@@ -38,10 +38,9 @@
                            </a>
                           
                         </div>
-					</div>
-					<div class="pb-20">
-						{{-- <table class="      "> --}}
-						<table class="table p-2 stripe data-table hover">
+                    </div>
+                    <div class="pb-20">
+                        <table class=" data-table-export table stripe hover p-2">
                             <thead>
                                 <tr>
                                     <th >#</th>
@@ -75,7 +74,11 @@
                             @endif
                                 <tr class="{{$statusclass}}">
                                     <td>{{$i++}}</td>
-                                    <td><a href="{{route('doc.show', $item->id)}}">{{$item->name}}</a></td>
+                                    <td><a href="{{route('doc.show', $item->id)}}">
+
+                                        {{$item->name}}
+
+                                    </a></td>
                                     <td style="width: 10px !important;"><i onclick="return open('{{asset($item->document)}}', 'ShokirjonMK', 'width=900,height=500,left=500,top=200')" class="icon-copy dw dw-download1 pointer"></i></td>
                                     <td>{{$item->number}}</td>
                                     <td style="width: 30px !important;">{{$item->end_date}}</td>
@@ -114,11 +117,11 @@
                             @endforeach
                             </tbody>
                         </table>
-					</div>
-				</div>
+                    </div>
+                </div>
 
                                         
-          <div class="footer-wrap pd-20 mb-20 card-box">
+            <div class="footer-wrap pd-20 mb-20 card-box">
                  <a href="https://t.me/ShokirjonMK" style="text-decoration: none" target="_blank">TOSHKENT DAVLAT YURIDIK UNIVERSITETI
                     "ELEKTRON UNIVERSITET" MARKAZI</a>
             </div>
@@ -129,13 +132,13 @@
 
 @section("js")
 
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/dataTables.buttons.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.print.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.html5.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.flash.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
-	<script src="{{asset('assets/admin/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
+    <script src="{{asset('assets/admin/src/plugins/datatables/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/admin/src/plugins/datatables/js/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('assets/admin/src/plugins/datatables/js/pdfmake.min.js')}}"></script>
+    <script src="{{asset('assets/admin/src/plugins/datatables/js/vfs_fonts.js')}}"></script>
 
 
 @endsection

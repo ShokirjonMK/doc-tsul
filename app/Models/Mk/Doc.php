@@ -29,6 +29,10 @@ class Doc extends Model
     {
         return $this->belongsTo(Supervisor::class, 'supervisor_id');
     }
+    // public function releted()
+    // {
+    //     return $this->belongsTo(Releted::class, 'releted_id');
+    // }
 
     public function getType()
     {
