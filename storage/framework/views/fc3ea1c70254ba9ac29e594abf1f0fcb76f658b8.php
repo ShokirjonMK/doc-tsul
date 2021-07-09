@@ -19,4 +19,10 @@
 		</a>
 	</li>
 	
-<?php endif; ?><?php /**PATH C:\wamp64\www\doc-tsul\resources\views/mk/includes/menu.blade.php ENDPATH**/ ?>
+<?php endif; ?>
+	<li class="<?php if(Request::is('mk/user')): ?> show <?php endif; ?>">
+		<a href="<?php echo e(route('doc-com.index')); ?>" class="dropdown-toggle">
+			
+			<span class="micon dw dw-edit-file"></span><span class="mtext">Muhokama </span>
+		</a>
+	</li><?php /**PATH C:\wamp64\www\doc-tsul\resources\views/mk/includes/menu.blade.php ENDPATH**/ ?>

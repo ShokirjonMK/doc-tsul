@@ -20,3 +20,9 @@
 	</li>
 	
 @endif
+	<li class="@if(Request::is('mk/user')) show @endif">
+		<a href="{{ route('doc-com.index')}}" class="dropdown-toggle">
+			
+			<span class="micon dw dw-edit-file"></span><span class="mtext">Muhokama </span>
+		</a>
+	</li>
