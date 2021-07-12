@@ -71,6 +71,26 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-box mb-30">
+                        <h5 class="pd-20 h5 mb-0">Izohlar</h5>
+                        <div class="latest-post">
+                            <ul>
+                                <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li>
+                                    <h4> <?php echo $comment->comment; ?></h4>
+                                    <span>
+                                        <?php if(auth()->user()->id == $comment->user_id ): ?>
+                                        Men
+                                        <?php else: ?> 
+                                        <?php echo e($comment->user->getfio()); ?>
+
+                                        <?php endif; ?>
+                                    </span> <span class="pull-right">Oxirgi o'zgartirish: <?php echo e(date('Y-m-d', strtotime($comment->created_at))); ?></span>
+                                </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <iframe id="mkiframePdfshow" style=" width: 100%; height: 600px;" src="<?php echo e(asset($data->document)); ?>" class="document-mk" ></iframe>

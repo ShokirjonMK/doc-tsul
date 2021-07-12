@@ -74,8 +74,6 @@
 <?php $__env->startSection('js'); ?>
     <script>
 
-
-   
     </script>
 
 <?php $__env->stopSection(); ?>

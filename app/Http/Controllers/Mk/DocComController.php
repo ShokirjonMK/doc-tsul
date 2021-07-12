@@ -183,9 +183,12 @@ class DocComController extends Controller
         $doc = DocCom::find($id);
 
         $comment = Comment::where('doc_com_id', $id)->where('user_id', auth()->user()->id)->first();
+        $comments = Comment::where('doc_com_id', $id)->get();
+
         return view("mk.pages.doccom.show", [
             'data' => $doc,
-            'comment' => $comment
+            'comment' => $comment,
+            'comments' => $comments
         ]);
     }
 
