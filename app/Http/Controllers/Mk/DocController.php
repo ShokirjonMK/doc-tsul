@@ -127,12 +127,17 @@ class DocController extends Controller
 
     public function store(Request $request)
     {
+        ini_set('upload_max_filesize', 128);
+        ini_set('post_max_size', 128);
+
         $input = $request->all();
 
         // return $request->file('document');
 
         $validator = Validator::make($input, [
-            'name'                 => ['required', 'max:255', 'string'],
+            // 'name'                 => ['required', 'max:255', 'string'],
+            'name' => ['required', 'string', 'max:10000'],
+
             'number'               => ['required'],
             'end_date'             => ['required'],
             // 'users'                => ['required'],
@@ -143,11 +148,12 @@ class DocController extends Controller
             'releted_id'                 => ['required'],
             // 'supervisor_id'                 => ['required'],
 
-
-            'document'             => ['required','max:18384'],
+            // 'document' => 'required|file|max:58384', // Maximum file size in KB (18 MB)
+            // 'document'             => ['required','max:18384'],
+            
         ]);
 
-        // return $request;
+        // return $validator;
 
         // return $request->user;
         if ($validator->fails()) {
@@ -155,7 +161,6 @@ class DocController extends Controller
         }
 
 
-// return 1;
 
         $new_doc = new Doc();
 

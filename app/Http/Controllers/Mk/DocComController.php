@@ -192,7 +192,6 @@ class DocComController extends Controller
         ]);
     }
 
-    
     //comment saqlash
     public function comment(Request $request)
     {

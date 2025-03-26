@@ -161,7 +161,7 @@
     var uploadField = document.getElementById("document-mk");
         uploadField.onchange = function() {
            
-            if(this.files[0].size > 9437184){
+            if(this.files[0].size > 19437184){
                 alert("Bunday katta hajmdagi ma'lumot yuklashga ruxsat berilmagan. Kichikroq fayl tanlang!");
                 this.value = "";
                 $("#iframePdf").attr("src","");

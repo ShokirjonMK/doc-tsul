@@ -55,7 +55,8 @@
 									<td>{{$i++}}</td>
 									<td><a href="{{route('user.show', $item->id)}}">{{$item->getfio()}}</a></td>
 									<td>
-									{{ \Illuminate\Support\Str::limit($item->department->name, 50, $end='...') }}
+{{--									{{ \Illuminate\Support\Str::limit($item->department->name, 50, $end='...') }}--}}
+										{{ \Illuminate\Support\Str::limit($item->department->name, 150, $end='...') }}
 									</td>
 									<td>{{$item->username}}</td>
 									<td>@if ($item->status == 1)
@@ -66,7 +67,7 @@
 									<td>
 										<a class="p-1" href="{{route('user.show',$item->id)}}"><i class="dw dw-eye"></i></a>
 										<a class="p-1" href="{{route('user.edit', $item->id)}}" ><i class="dw dw-edit2"></i></a>
-										<a class="p-1" href="#"><i class="dw dw-delete-3"></i> </a>
+{{--										<a class="p-1" href="{{route('user.delete', $item->id)}}"><i class="dw dw-delete-3"></i> </a>--}}
 									</td>
 								</tr>
 							@endforeach

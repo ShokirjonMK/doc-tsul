@@ -18,11 +18,13 @@
                             </ol>
                         </nav>
                     </div>
+                    @if(Auth::user()->role != 555)
                     <div class="col-md-6 col-sm-12 text-right">
                         <a class="btn btn-primary " href="{{route('doc.create')}}" role="button" >
                             Yangi hujjat kiritish
                         </a>
                     </div>
+                    @endif
                 </div>
             </div>
 

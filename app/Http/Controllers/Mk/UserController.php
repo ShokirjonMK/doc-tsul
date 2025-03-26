@@ -35,6 +35,7 @@ class UserController extends Controller
             'data' => $user
         ]);
     }
+
     public function show($id)
     {
         $user = User::where('id', $id)->first();
@@ -64,9 +65,9 @@ class UserController extends Controller
         // return $request;
 
         $validator = Validator::make($input, [
-            'last_name'                 => ['required', 'max:255', 'string'],
-            'first_name'               => ['required'],
-            'middle_name'             => ['required'],
+            'last_name' => ['required', 'max:255', 'string'],
+            'first_name' => ['required'],
+            'middle_name' => ['required'],
             // 'phone'             => ['required'],
             // 'department'             => ['required'],
             // 'position'             => ['required'],
@@ -180,6 +181,13 @@ class UserController extends Controller
         return $user;
     }
 
+    public function вудуеу($id)
+    {
+        $user = User::where('id', $id)->first();
+         $user->delete();
+
+        return redirect()->route('user.index')->with('success', 'Ma`lumot o`chirildu');
+    }
 
 
     public function randomPassword_number($count)
