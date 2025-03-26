@@ -5,7 +5,7 @@
 @section('content')
     <div class="main-container">
         <div class="xs-pd-20-10 pd-ltr-20">
-            <div class="page-header">
+            {{-- <div class="page-header">
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
@@ -26,7 +26,7 @@
                         </div>
                     @endif
                 </div>
-            </div>
+            </div> --}}
 
             <div class="card-box mb-30">
                 <div class="pd-20" style="display: flex; justify-content: space-between;">
