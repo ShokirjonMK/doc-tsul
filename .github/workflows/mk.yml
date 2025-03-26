@@ -21,7 +21,10 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         password: ${{ secrets.SERVER_PASSWORD }}
         script: |
-          PROJECT_PATH=$(grep PROJECT_PATH /var/www/doc-tsul/.env | cut -d '=' -f2)
-          cd $PROJECT_PATH
-          git reset --hard
+          cd /var/www/doc-tsul/
+          git add .
+          git commit -m "sserver sss"
+          
+          # git reset --hard
           git pull origin main
+          git push origin main
