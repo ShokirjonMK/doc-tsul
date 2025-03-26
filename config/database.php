@@ -51,10 +51,13 @@ return [
             // 'database' => 'tsul_deoc_test',
             // 'username' => 'root',
             // 'password' => '',
-
             'database' => 'doc_tsul',
-            'username' => 'root',
-            'password' => '',
+            'username' => 'ecenter_user',
+            'password' => '3c3nt3R',
+
+            // 'database' => 'doc_tsul',
+            // 'username' => 'root',
+            // 'password' => '',
 
 
             'unix_socket' => env('DB_SOCKET', ''),
