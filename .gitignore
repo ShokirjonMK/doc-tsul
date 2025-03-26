@@ -16,3 +16,7 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 *.zip
+
+
+storage/framework/views/*
+
