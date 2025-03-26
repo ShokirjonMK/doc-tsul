@@ -38,10 +38,13 @@ class DocCom extends Model
     {
         if ($this->type == 1) {
             return "Buyruq";
+        } elseif ($this->type == 2) {
+            return "Memorandum";
         } elseif ($this->type == 0) {
             return "Kengash qarori";
         }
     }
+
     public function getDuration()
     {
         if ($this->duration == 1) {

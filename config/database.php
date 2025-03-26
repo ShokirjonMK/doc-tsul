@@ -53,10 +53,10 @@ return [
             // 'password' => '',
 
             'database' => 'doc_tsul',
-            'username' => 'ecenter_user',
-            'password' => '3c3nt3R',
+            'username' => 'root',
+            'password' => '',
 
-            
+
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

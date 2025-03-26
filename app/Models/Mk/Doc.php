@@ -5,6 +5,8 @@ namespace App\Models\Mk;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Mk\Supervisor;
 use App\Models\Mk\Releted;
+use Illuminate\Support\Str;
+
 
 class Doc extends Model
 {
@@ -20,6 +22,11 @@ class Doc extends Model
         'end_date',
         'status'
     ];
+
+    public function getShortNameAttribute()
+    {
+        return Str::limit($this->name, 60, '...');
+    }
 
     public function releted()
     {
@@ -38,10 +45,13 @@ class Doc extends Model
     {
         if ($this->type == 1) {
             return "Buyruq";
+        } elseif ($this->type == 2) {
+            return "Memorandum";
         } elseif ($this->type == 0) {
             return "Kengash qarori";
         }
     }
+
     public function getDuration()
     {
         if ($this->duration == 1) {

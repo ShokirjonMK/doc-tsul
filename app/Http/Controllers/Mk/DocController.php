@@ -28,14 +28,13 @@ use PDF;
 class DocController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $query = Doc::query();
 
+        $data = $query->orderBy('id', 'desc')->paginate(10)->appends($request->query());
 
-        $data = Doc::orderBy('id', 'DESC')->get();
-
-        //        $data = Doc::orderBy('end_date', 'DESC')->get();
+        // $data = Doc::orderBy('end_date', 'DESC')->get();
 
         return view('mk.pages.doc.index', [
             'data' => $data,
@@ -43,7 +42,6 @@ class DocController extends Controller
     }
     public function mydoc()
     {
-        $users = User::all();
 
         $data = AttachPart::where('user_id', Auth::id())->orderBy('end_date', 'DESC')->get();
 
@@ -150,7 +148,7 @@ class DocController extends Controller
 
             // 'document' => 'required|file|max:58384', // Maximum file size in KB (18 MB)
             // 'document'             => ['required','max:18384'],
-            
+
         ]);
 
         // return $validator;
@@ -436,7 +434,7 @@ class DocController extends Controller
                 if ($request->releted_id != 0) {
                     $query->where('doc.releted_id', $request->releted_id);
                 }
-                if ($request->type != 2) {
+                if ($request->type != 3) {
                     $query->where('doc.type', $request->type);
                 }
                 if ($request->duration != 2) {

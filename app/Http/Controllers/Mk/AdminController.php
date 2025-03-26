@@ -50,6 +50,7 @@ class AdminController extends Controller
         $doimiy = Doc::where('duration', 0)->count();
         $muddatli = Doc::where('duration', 1)->count();
         $kengash = Doc::where('type', 0)->count();
+        $memorandum = Doc::where('type', 2)->count();
         $buyruq = Doc::where('type', 1)->count();
         $doimiy_f = 100 * $doimiy / $doc->count();
         $faol_f = 100 * $faol / $doc->count();
@@ -62,6 +63,7 @@ class AdminController extends Controller
             'data' => $data,
             'buyruq' => $buyruq,
             'kengash' => $kengash,
+            'memorandum' => $memorandum,
             'muddatli' => $muddatli,
             'yakunlangan' => $yakunlangan,
             'doimiy' => $doimiy,
@@ -76,7 +78,7 @@ class AdminController extends Controller
             'doc' => $doc
         ]);
     }
-    
+
     public function userindex()
     {
         $user = User::where('role', 555)->get();
