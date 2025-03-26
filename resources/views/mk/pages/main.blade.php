@@ -100,7 +100,7 @@
                                                     <select class="selectpicker form-control" required name="type"
                                                         data-style="btn-outline-primary">
                                                         {{-- <select name="status" required class="custom-select col-12"> --}}
-                                                        <option value="2" selected>Barchasi</option>
+                                                        <option value="3" selected>Barchasi</option>
                                                         <option value="1">Buyruq</option>
                                                         <option value="0">Kengash qarori</option>
                                                         <option value="2">Memorandum</option>
